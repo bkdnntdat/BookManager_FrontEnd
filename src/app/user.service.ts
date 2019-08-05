@@ -19,10 +19,9 @@ export class UserService {
     private http:HttpClient
     ) {}
 
-  getUser():Observable<User>{
-    return this.http.get(this.url)
-      .pipe(map((resp: string) => JSON.parse(resp)));
-  }
+    getUser():Observable<User>{
+      return this.http.get<User>(this.url).pipe(tap(_ => this.log('asd')), catchError(this.handleError<User>('asd')))
+    }
 
   private log(message: string) {
     message="asd";

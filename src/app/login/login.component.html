@@ -10,7 +10,7 @@
       <input type="password" [(ngModel)]="password" placeholder="Password"/>
     </label>
         <p class="forgot-pass">Forgot password?</p>
-        <button type="button" class="submit" (click)="sendRequestLogin()">Sign In</button>
+        <button type="button" class="submit" (click)="sendRequestLogin()" routerLink="/user">Sign In</button>
         <button type="button" class="fb-btn">Connect with <span>facebook</span></button>
     </div>
     <div class="sub-cont">
