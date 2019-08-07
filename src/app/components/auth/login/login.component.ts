@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Login } from '../login';
+import { Login } from '../../../models/login';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { TokenService } from '../services/token.service';
+import { TokenService } from '../../../services/token/token.service';
 
 @Component({
   selector: 'app-login',
@@ -47,7 +47,11 @@ export class LoginComponent implements OnInit {
       .subscribe((response: any) => {
         this.token = response.token;
         this.tokenService.saveToken(this.token);
-        this.router.navigate(['user'])
+        this.router.navigate(['user']);
       })
+  }
+
+  signUp(): void{
+    this.router.navigate(['signup']);
   }
 }
