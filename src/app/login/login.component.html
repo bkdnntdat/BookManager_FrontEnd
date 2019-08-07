@@ -3,14 +3,14 @@
         <h2>Welcome back,</h2>
         <label>
       <span>Email</span>
-      <input type="email" [(ngModel)]="email" placeholder="Email"/>
+      <input type="email" [(ngModel)]="email" placeholder="Email" required/>
     </label>
         <label>
       <span>Your Password</span>
-      <input type="password" [(ngModel)]="password" placeholder="Password"/>
+      <input type="password" [(ngModel)]="password" placeholder="Password" required/>
     </label>
         <p class="forgot-pass">Forgot password?</p>
-        <button type="button" class="submit" (click)="sendRequestLogin()" routerLink="/user">Sign In</button>
+        <button type="button" class="submit" (click)="sendRequestLogin()">Sign In</button>
         <button type="button" class="fb-btn">Connect with <span>facebook</span></button>
     </div>
     <div class="sub-cont">
