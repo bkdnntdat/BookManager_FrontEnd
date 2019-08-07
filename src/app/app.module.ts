@@ -8,7 +8,7 @@ import { HttpClientModule }    from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { RegisterComponent } from './components/auth/register/register.component';
 import { HomeComponent } from './home/home.component';
-import { ConfirmRegisterComponent } from './components/auth/confirm-register/confirm-register/confirm-register.component';
+import { ConfirmRegisterComponent } from './components/auth/confirm-register/confirm-register.component';
 
 @NgModule({
   declarations: [
