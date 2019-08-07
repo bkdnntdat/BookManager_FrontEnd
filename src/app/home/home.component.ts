@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../user';
 import { UserService } from '../user.service';
+import { TokenService } from '../services/token.service';
 
 @Component({
   selector: 'app-home',
@@ -9,19 +10,20 @@ import { UserService } from '../user.service';
 })
 export class HomeComponent implements OnInit {
 
-  user: User;
+   token: string;
 
-  constructor(private userService: UserService) { }
+   constructor(private userService: UserService, private tokenService: TokenService) { }
 
-  getUser():void{
-    this.userService.getUser().subscribe(user => {
-      this.user = user;
-    }
-    );
-  }
+  // getToken():void{
+  //   this.userService.getToken().subscribe(token => {
+  //     this.token = token;
+  //   }
+  //   );
+  //   localStorage.setItem('token', this.token);
+  // }
 
   ngOnInit() {
-    this.getUser();
+    this.token = this.tokenService.getToken()// this.getToken();
   }
 
 }

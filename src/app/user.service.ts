@@ -9,7 +9,7 @@ import { catchError, tap, map } from 'rxjs/operators';
 })
 export class UserService {
 
-  private url='http://localhost:8080/home';
+  private url='http://localhost:4200/login';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -19,8 +19,8 @@ export class UserService {
     private http:HttpClient
     ) {}
 
-    getUser():Observable<User>{
-      return this.http.get<User>(this.url).pipe(tap(_ => this.log('asd')), catchError(this.handleError<User>('asd')))
+    getToken():Observable<string>{
+      return this.http.get<string>(this.url).pipe(tap(_ => this.log('asd')), catchError(this.handleError<string>('asd')))
     }
 
   private log(message: string) {

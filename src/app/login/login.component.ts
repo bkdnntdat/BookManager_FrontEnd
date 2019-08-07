@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Login } from '../login';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { TokenService } from '../services/token.service';
 
 @Component({
   selector: 'app-login',
@@ -13,9 +15,12 @@ export class LoginComponent implements OnInit {
   login: Login;
   email: string;
   password: string;
+  token: string;
 
   constructor(
     private httpClient: HttpClient,
+    private router: Router,
+    private tokenService: TokenService,
   ) { }
 
   ngOnInit() {
@@ -38,11 +43,11 @@ export class LoginComponent implements OnInit {
       email: this.email,
       password: this.password,
     }
-    this.httpClient.post('http://localhost:8080/login', body)
-      .subscribe(response => {
-        console.log(response);
+    this.httpClient.post('http://localhost:8080/api/login', body)
+      .subscribe((response: any) => {
+        this.token = response.token;
+        this.tokenService.saveToken(this.token);
+        this.router.navigate(['user'])
       })
-      
-      window.location.href = "/user";
   }
 }
