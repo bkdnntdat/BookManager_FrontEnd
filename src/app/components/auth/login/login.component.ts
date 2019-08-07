@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
       email: this.email,
       password: this.password,
     }
-    this.httpClient.post('http://localhost:8080/api/login', body)
+    this.httpClient.post('http://localhost:8080/auth', body)
       .subscribe((response: any) => {
         this.token = response.token;
         this.tokenService.saveToken(this.token);

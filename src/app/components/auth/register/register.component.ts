@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
+import { TokenService } from 'src/app/services/token/token.service';
 
 @Component({
   selector: 'app-register',
@@ -15,7 +16,8 @@ export class RegisterComponent implements OnInit {
   password: string;
 
   constructor(private httpClient: HttpClient,
-    private router: Router) {}
+    private router: Router,
+    private tokenService:TokenService) {}
 
   ngOnInit() {
   }
@@ -30,7 +32,10 @@ export class RegisterComponent implements OnInit {
       password: this.password,
     }
 
-    this.httpClient.post('http://localhost:8080/signup',body).subscribe(response => console.log(response)); 
+    this.httpClient.post('http://localhost:8080/user',body).subscribe((response:any) => {
+      console.log(response);
+      this.tokenService.saveToken(response.token);
+    }); 
 
     this.router.navigate(['confirmCode']);
   }
