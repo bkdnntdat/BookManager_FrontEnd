@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/auth/login/login.component';
-import {RegisterComponent} from './components/auth/register/register.component';
+import {RegisterComponent} from './components/users/register/register.component';
 import { HomeComponent } from './home/home.component';
-import { ConfirmRegisterComponent } from './components/auth/confirm-register/confirm-register.component';
+import { ConfirmRegisterComponent } from './components/users/confirm-register/confirm-register.component';
 
 
 const routes: Routes = [

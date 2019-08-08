@@ -6,9 +6,9 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/auth/login/login.component';
 import { HttpClientModule }    from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
-import { RegisterComponent } from './components/auth/register/register.component';
+import { RegisterComponent } from './components/users/register/register.component';
 import { HomeComponent } from './home/home.component';
-import { ConfirmRegisterComponent } from './components/auth/confirm-register/confirm-register.component';
+import { ConfirmRegisterComponent } from './components/users/confirm-register/confirm-register.component';
 
 @NgModule({
   declarations: [
