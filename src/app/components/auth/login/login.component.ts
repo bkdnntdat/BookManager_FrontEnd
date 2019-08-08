@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Login } from '../../../models/login';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { TokenService } from '../../../services/token/token.service';
 
@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getUser();
   }
 
   sendRequestLogin(): void {
@@ -54,4 +55,12 @@ export class LoginComponent implements OnInit {
   signUp(): void{
     this.router.navigate(['signup']);
   }
+
+  getUser(): void{
+    let param = new HttpParams().append('token', this.tokenService.getToken());
+    this.httpClient.get('http://localhost:8080/user', {params:param}).subscribe((resp:any) =>{
+      if(resp.code == null){
+        this.router.navigate(['user']);
+      }
+    })}
 }
