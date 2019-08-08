@@ -3,5 +3,5 @@ export class User{
     lastName:string;
     email:string;
     password:string;
-    avt:ImageBitmap;
+    code: string;
 }

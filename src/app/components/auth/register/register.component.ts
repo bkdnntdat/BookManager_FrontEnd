@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(private httpClient: HttpClient,
     private router: Router,
-    private tokenService:TokenService) {}
+    private tokenService: TokenService) {}
 
   ngOnInit() {
   }

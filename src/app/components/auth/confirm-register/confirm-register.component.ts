@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenService } from 'src/app/services/token/token.service';
 import { UserService } from 'src/app/services/user/user.service';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-confirm-register',
@@ -10,14 +13,36 @@ import { UserService } from 'src/app/services/user/user.service';
 export class ConfirmRegisterComponent implements OnInit {
   code: string;
 
-  constructor(private tokenService: TokenService, private userService: UserService) { }
+  user:User;
+
+  constructor(private tokenService: TokenService, 
+    private userService: UserService, 
+    private httpClient:HttpClient,
+    private router: Router) { }
 
   ngOnInit() {
+    this.getUser();
   }
 
   confirm(): void{
     console.log(this.code);
-    // this.
+    const body = {
+      code: this.code,
+      token: this.tokenService.getToken()
+    }
+    
+    this.httpClient.post('http://localhost:8080/user/confirm', body).subscribe((resp:any) =>{
+      this.tokenService.saveToken(resp.token);
+      this.router.navigate(['user'])
+    });
   }
 
+  getUser(): void{
+    let param = new HttpParams().append('token', this.tokenService.getToken());
+    this.httpClient.get('http://localhost:8080/user', {params:param}).subscribe((resp:any) =>{
+      if(resp.code == null){
+        this.router.navigate(['user']);
+      }
+    })
+  }
 }
