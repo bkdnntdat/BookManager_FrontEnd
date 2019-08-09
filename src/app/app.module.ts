@@ -11,6 +11,8 @@ import { ConfirmRegisterComponent } from './components/users/confirm-register/co
 import { BookComponent } from './components/book/book.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {EditorModule} from 'primeng/editor';
+import {InputTextModule} from 'primeng/inputtext';
+import {ButtonModule} from 'primeng/button';
 
 
 @NgModule({
@@ -28,7 +30,9 @@ import {EditorModule} from 'primeng/editor';
     HttpClientModule,
     FormsModule,
     BrowserAnimationsModule,
-    EditorModule
+    EditorModule,
+    InputTextModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
