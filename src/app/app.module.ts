@@ -8,7 +8,7 @@ import {FormsModule} from '@angular/forms';
 import { RegisterComponent } from './components/users/register/register.component';
 import { HomeComponent } from './home/home.component';
 import { ConfirmRegisterComponent } from './components/users/confirm-register/confirm-register.component';
-import { BookComponent } from './components/book/book.component';
+import { BookComponent } from './components/book/createBook/create-book.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {EditorModule} from 'primeng/editor';
 import {InputTextModule} from 'primeng/inputtext';

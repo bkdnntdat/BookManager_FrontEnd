@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-book',
-  templateUrl: './book.component.html',
-  styleUrls: ['./book.component.scss']
+  templateUrl: './create-book.component.html',
+  styleUrls: ['./create-book.component.scss']
 })
 export class BookComponent implements OnInit {
 
