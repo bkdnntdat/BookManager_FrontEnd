@@ -2,13 +2,15 @@
     <input [(ngModel)]="title" id="float-input" type="text" size="194"pInputText> 
     <label for="float-input">Title</label>
 </span>
-<span class="ui-float-label margin">
-    <textarea [(ngModel)]="description" [rows]="5" [cols]="200" pInputTextarea autoResize="autoResize"></textarea>
-    <label for="float-input">Description</label>
-</span>
 
 <span class="margin">
-    <label class="color">Content</label>
-    <p-editor [(ngModel)]="content" [style]="{'height':'320px'}"></p-editor>
+    <label class="color">Description</label>
+    <p-editor [(ngModel)]="description" [style]="{'height':'320px'}"></p-editor>
 </span>
-<button pButton type="button" label="Post" class="ui-button-rounded ui-button-success margin"></button>
+
+<span class="ui-float-label margin">
+        <input [(ngModel)]="title" id="float-input" type="text" size="194"pInputText> 
+        <label for="float-input">Author</label>
+</span>
+
+<button pButton type="button" label="Post" class="ui-button-rounded ui-button-success margin" (click)="post()"></button>

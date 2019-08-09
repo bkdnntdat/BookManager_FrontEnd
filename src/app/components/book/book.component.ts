@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-book',
@@ -7,11 +8,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BookComponent implements OnInit {
 
-  text: string;
+  title: string;
+  description: string;
+  author: string;
 
-  constructor() { }
+  constructor(private httpClient:HttpClient) { }
 
   ngOnInit() {
+  }
+
+  post(): void{
+    console.log(this.title, this.description, this.author);
+    const body={
+      title: this.title,
+      description: this.description,
+      author: this.author
+    }
+
+    this.httpClient.post("http://localhost:8080/book", body).subscribe(resp => {});
   }
 
 }
