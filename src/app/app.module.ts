@@ -8,11 +8,12 @@ import {FormsModule} from '@angular/forms';
 import { RegisterComponent } from './components/users/register/register.component';
 import { HomeComponent } from './home/home.component';
 import { ConfirmRegisterComponent } from './components/users/confirm-register/confirm-register.component';
-import { BookComponent } from './components/book/createBook/create-book.component';
+import { BookComponent } from './components/book/create-book/create-book.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {EditorModule} from 'primeng/editor';
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
+import { EditBookComponent } from './components/book/edit-book/edit-book.component';
 
 
 @NgModule({
@@ -22,7 +23,8 @@ import {ButtonModule} from 'primeng/button';
     RegisterComponent,
     HomeComponent,
     ConfirmRegisterComponent,
-    BookComponent
+    BookComponent,
+    EditBookComponent
   ],
   imports: [
     BrowserModule,
