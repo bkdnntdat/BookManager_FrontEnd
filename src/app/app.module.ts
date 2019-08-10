@@ -14,6 +14,7 @@ import {EditorModule} from 'primeng/editor';
 import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import { EditBookComponent } from './components/book/edit-book/edit-book.component';
+import { BooksComponent } from './components/book/books/books.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { EditBookComponent } from './components/book/edit-book/edit-book.compone
     HomeComponent,
     ConfirmRegisterComponent,
     BookComponent,
-    EditBookComponent
+    EditBookComponent,
+    BooksComponent
   ],
   imports: [
     BrowserModule,

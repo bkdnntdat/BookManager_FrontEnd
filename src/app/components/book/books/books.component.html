@@ -1,0 +1,5 @@
+<li *ngFor="let book of books">
+    <a routerLink="/editBook/{{book.id}}">
+        <span class="badge">{{book.id}}</span> {{book.title}}
+    </a>
+</li>

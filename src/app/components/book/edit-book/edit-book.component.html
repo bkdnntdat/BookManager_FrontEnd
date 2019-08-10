@@ -1,1 +1,18 @@
-<p>edit-book works!</p>
+<div *ngIf="book">
+    <span class="ui-float-label margin">
+    <input [(ngModel)]="book.title" id="float-input" type="text" size="194"pInputText> 
+    <label for="float-input">Title</label>
+</span>
+
+    <span class="margin">
+    <label class="color">Description</label>
+    <p-editor [(ngModel)]="book.description" [style]="{'height':'320px'}"></p-editor>
+</span>
+
+    <span class="ui-float-label margin">
+        <input [(ngModel)]="book.author" id="float-input" type="text" size="194"pInputText> 
+        <label for="float-input">Author</label>
+</span>
+
+    <button pButton type="button" label="Save" class="ui-button-rounded ui-button-success margin" (click)="save()"></button>
+</div>

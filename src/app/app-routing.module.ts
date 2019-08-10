@@ -5,6 +5,8 @@ import {RegisterComponent} from './components/users/register/register.component'
 import { HomeComponent } from './home/home.component';
 import { ConfirmRegisterComponent } from './components/users/confirm-register/confirm-register.component';
 import { BookComponent } from './components/book/create-book/create-book.component';
+import { EditBookComponent } from './components/book/edit-book/edit-book.component';
+import { BooksComponent } from './components/book/books/books.component';
 
 
 const routes: Routes = [
@@ -32,6 +34,14 @@ const routes: Routes = [
   {
     path: 'createBook',
     component: BookComponent
+  },
+  {
+    path: 'editBook/:id',
+    component: EditBookComponent
+  },
+  {
+    path: 'books',
+    component: BooksComponent
   }
 ];
 
