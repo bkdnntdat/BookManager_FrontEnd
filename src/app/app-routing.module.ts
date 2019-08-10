@@ -30,7 +30,7 @@ const routes: Routes = [
     component: ConfirmRegisterComponent,
   },
   {
-    path: 'book',
+    path: 'createBook',
     component: BookComponent
   }
 ];
