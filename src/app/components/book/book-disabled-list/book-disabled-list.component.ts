@@ -12,14 +12,7 @@ export class BookDisabledListComponent implements OnInit {
 
   books:Book[];
 
-  // book1:Book[];
-
-  // book2:Book[];
-
-  // book3:Book[];
-
   cols: any[];
-
   
   constructor(
     private bookService: BookService,
@@ -27,12 +20,10 @@ export class BookDisabledListComponent implements OnInit {
 
   ngOnInit() {
     this.getBooks();
-    // this.getBooks(this.book2);
-    // this.getBooks(this.book3);
 
     this.cols = [
+      { field: 'id', header: 'Id', display: 'none' },
       { field: 'title', header: 'Title' },
-      // { field: 'description', header: 'Description' },
       { field: 'author', header: 'Author' },
       { field: 'enabled', header: 'Enable' }
   ];

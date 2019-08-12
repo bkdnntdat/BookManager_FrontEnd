@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.getUser();
   }
 
   sendRequestLogin(): void {
@@ -70,6 +71,9 @@ export class LoginComponent implements OnInit {
     this.httpClient.get('http://localhost:8080/user', {params:param}).subscribe((resp:any) =>{
       if(resp.code == null){
         this.router.navigate(['user']);
+      }
+      else{
+        this.router.navigate(['confirmCode']);
       }
     })}
 }

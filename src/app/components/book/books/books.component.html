@@ -1,19 +1,8 @@
-<ul class="list-style">
-    <ng-container *ngFor="let book of books">
-        <li *ngIf="book.enabled">
-            <div>
-                <a routerLink="/editBook/{{book.id}}">
-                    <span> {{book.title}} </span>
-                </a>
-            </div>
-        </li>
-    </ng-container>
-</ul>
 <p-table [columns]="cols" [value]="books" dataKey="title">
     <ng-template pTemplate="header" let-columns>
         <tr>
             <th style="width: 3em"></th>
-            <th *ngFor="let col of columns">
+            <th *ngFor="let col of columns" [ngStyle]="{'display': col.display}">
                 <!-- <div *ngIf="col.header!=='Description'"> -->
                 {{col.header}}
                 <!-- </div> -->
@@ -27,14 +16,23 @@
                     <i [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></i>
                 </a>
             </td>
-            <td *ngFor="let col of columns">
+            <td *ngFor="let col of columns" [ngStyle]="{'display': col.display}">
                 <!-- <div *ngIf="col.header!=='Description'"> -->
-                <!-- <div *ngIf="col.header=='Enable'; else show">
+                <div *ngIf="col.header=='Enable'; else show">
                     <p-inputSwitch [(ngModel)]="rowData[col.field]"></p-inputSwitch>
-                </div> -->
-                <a routerLink="/editBook/{{book.id}}">
-                {{rowData[col.field]}}
-                </a>
+                </div>
+                <ng-template #show>
+                    <div *ngIf="col.header=='Title'; else showAuthor">
+                        <a routerLink="../editBook/{{rowData.id}}">
+                                {{rowData[col.field]}}    
+                            </a>
+                    </div>
+                    <ng-template #showAuthor>
+                        <div *ngIf="col.header=='Author'">
+                            {{rowData[col.field]}}
+                        </div>
+                    </ng-template>
+                </ng-template>
                 <!-- </div> -->
             </td>
         </tr>

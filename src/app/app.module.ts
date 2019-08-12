@@ -18,7 +18,7 @@ import { BooksComponent } from './components/book/books/books.component';
 import { BookDisabledListComponent } from './components/book/book-disabled-list/book-disabled-list.component';
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {TableModule} from 'primeng/table';
-
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -42,7 +42,8 @@ import {TableModule} from 'primeng/table';
     InputTextModule,
     ButtonModule,
     InputSwitchModule,
-    TableModule
+    TableModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
