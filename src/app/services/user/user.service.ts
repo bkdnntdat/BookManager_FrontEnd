@@ -1,49 +1,31 @@
 import { Injectable } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { User } from '../../models/user';
 import { catchError, tap, map } from 'rxjs/operators';
+import { TokenService } from '../token/token.service';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
 
-  private url='http://localhost:4200/login';
+  private url='http://localhost:4200';
+  private urlApi='http://localhost:8080/user';
+  user: User;
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
   constructor(
-    private http:HttpClient
+    private httpClient:HttpClient,
+    private tokenService: TokenService,
+    private router: Router
     ) {}
 
     getToken():Observable<string>{
-      return this.http.get<string>(this.url).pipe(tap(_ => this.log('asd')), catchError(this.handleError<string>('asd')))
+      return this.httpClient.get<string>(`${this.url}/login`).pipe()
     }
-
-  private log(message: string) {
-    message="asd";
-  }
-
-      /**
-   * Handle Http operation that failed.
-   * Let the app continue.
-   * @param operation - name of the operation that failed
-   * @param result - optional value to return as the observable result
-   */
-  private handleError<T> (operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-
-      // TODO: better job of transforming error for user consumption
-      this.log(`${operation} failed: ${error.message}`);
-
-      // Let the app keep running by returning an empty result.
-      return of(result as T);
-    };
-  }
 }

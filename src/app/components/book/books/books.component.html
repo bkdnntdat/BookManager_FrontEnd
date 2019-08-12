@@ -1,5 +1,7 @@
 <li *ngFor="let book of books">
+    <!-- <div *ngIf="book.enable"> -->
     <a routerLink="/editBook/{{book.id}}">
-        <span class="badge">{{book.id}}</span> {{book.title}}
+        <span> {{book.title}} </span>
     </a>
+    <!-- </div> -->
 </li>

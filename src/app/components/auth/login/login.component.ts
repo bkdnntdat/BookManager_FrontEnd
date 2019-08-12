@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.getUser();
   }
 
   sendRequestLogin(): void {
@@ -47,8 +46,18 @@ export class LoginComponent implements OnInit {
     this.httpClient.post('http://localhost:8080/auth', body)
       .subscribe((response: any) => {
         this.token = response.token;
+        this.tokenService.clearToken();
         this.tokenService.saveToken(this.token);
-        this.router.navigate(['confirmCode']); 
+        
+        let param = new HttpParams().append('token', this.tokenService.getToken());
+        this.httpClient.get('http://localhost:8080/user/token', {params:param}).subscribe((resp:any) =>{
+        if(resp.code == null){
+          this.router.navigate(['user']);
+        }
+        else{
+          this.router.navigate(['confirmCode']);
+        }
+        })
       })
   }
 

@@ -22,6 +22,7 @@ export class ConfirmRegisterComponent implements OnInit {
 
   ngOnInit() {
     this.getUser();
+    this.user = this.userService.user;
   }
 
   confirm(): void{
@@ -36,13 +37,9 @@ export class ConfirmRegisterComponent implements OnInit {
       this.router.navigate(['user'])
     });
   }
-
+  
   getUser(): void{
     let param = new HttpParams().append('token', this.tokenService.getToken());
-    this.httpClient.get('http://localhost:8080/user', {params:param}).subscribe((resp:any) =>{
-      if(resp.code == null){
-        this.router.navigate(['user']);
-      }
-    })
+    this.httpClient.get('http://localhost:8080/user/token', {params:param}).subscribe((resp:any) =>{this.user = resp});
   }
 }
