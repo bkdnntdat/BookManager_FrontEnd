@@ -1,14 +1,14 @@
-<ul class="list-style">
+<!-- <ul class="list-style">
     <ng-container *ngFor="let book of books">
-        <li *ngIf="book.enabled">
-            <div>
-                <a routerLink="/editBook/{{book.id}}">
-                    <span> {{book.title}} </span>
-                </a>
-            </div>
-        </li>
+        <div>
+            <a routerLink="/editBook/{{book.id}}">
+                <span> {{book.title}} </span>
+            </a>
+
+            <p-inputSwitch [(ngModel)]="book.enabled"></p-inputSwitch>
+        </div>
     </ng-container>
-</ul>
+</ul> -->
 <p-table [columns]="cols" [value]="books" dataKey="title">
     <ng-template pTemplate="header" let-columns>
         <tr>
@@ -29,12 +29,12 @@
             </td>
             <td *ngFor="let col of columns">
                 <!-- <div *ngIf="col.header!=='Description'"> -->
-                <!-- <div *ngIf="col.header=='Enable'; else show">
+                <div *ngIf="col.header=='Enable'; else show">
                     <p-inputSwitch [(ngModel)]="rowData[col.field]"></p-inputSwitch>
-                </div> -->
-                <a routerLink="/editBook/{{book.id}}">
-                {{rowData[col.field]}}
-                </a>
+                </div>
+                <ng-template #show>
+                    {{rowData[col.field]}}
+                </ng-template>
                 <!-- </div> -->
             </td>
         </tr>
@@ -46,3 +46,5 @@
         </tr>
     </ng-template>
 </p-table>
+
+<button pButton type="button" label="Save" class="ui-button-rounded ui-button-success margin" (click)="save()"></button>

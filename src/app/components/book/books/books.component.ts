@@ -11,14 +11,25 @@ export class BooksComponent implements OnInit {
 
   books: Book[];
 
+  cols:any[];
+
   constructor(private bookService: BookService) { }
 
   ngOnInit() {
     this.getBooks();
+    
+    this.cols = [
+      { field: 'title', header: 'Title' },
+      // { field: 'description', header: 'Description' },
+      { field: 'author', header: 'Author' }
+  ];
   }
 
   getBooks(): void{
-    this.bookService.getBooks().subscribe(books => this.books = books);
+    this.bookService.getBooks(true).subscribe(books => {
+      this.books = books;
+      console.log(this.books);
+    });
   }
 
 }

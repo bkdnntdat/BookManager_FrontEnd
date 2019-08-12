@@ -15,6 +15,9 @@ import {InputTextModule} from 'primeng/inputtext';
 import {ButtonModule} from 'primeng/button';
 import { EditBookComponent } from './components/book/edit-book/edit-book.component';
 import { BooksComponent } from './components/book/books/books.component';
+import { BookDisabledListComponent } from './components/book/book-disabled-list/book-disabled-list.component';
+import {InputSwitchModule} from 'primeng/inputswitch';
+import {TableModule} from 'primeng/table';
 
 
 @NgModule({
@@ -26,7 +29,8 @@ import { BooksComponent } from './components/book/books/books.component';
     ConfirmRegisterComponent,
     BookComponent,
     EditBookComponent,
-    BooksComponent
+    BooksComponent,
+    BookDisabledListComponent
   ],
   imports: [
     BrowserModule,
@@ -36,7 +40,9 @@ import { BooksComponent } from './components/book/books/books.component';
     BrowserAnimationsModule,
     EditorModule,
     InputTextModule,
-    ButtonModule
+    ButtonModule,
+    InputSwitchModule,
+    TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

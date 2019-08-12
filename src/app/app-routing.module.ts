@@ -7,6 +7,7 @@ import { ConfirmRegisterComponent } from './components/users/confirm-register/co
 import { BookComponent } from './components/book/create-book/create-book.component';
 import { EditBookComponent } from './components/book/edit-book/edit-book.component';
 import { BooksComponent } from './components/book/books/books.component';
+import { BookDisabledListComponent } from './components/book/book-disabled-list/book-disabled-list.component';
 
 
 const routes: Routes = [
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path: 'books',
     component: BooksComponent
+  },
+  {
+    path: 'bookDisableList',
+    component: BookDisabledListComponent
   }
 ];
 

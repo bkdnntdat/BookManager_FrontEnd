@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Book } from 'src/app/models/book';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -20,11 +20,16 @@ export class BookService {
     return this.httpClient.get<Book>(url).pipe();
   }
 
-  getBooks(): Observable<Book[]>{
-    return this.httpClient.get<Book[]>(this.urlApi).pipe();
+  getBooks(enabled: Boolean): Observable<Book[]>{
+    let param = new HttpParams().set('enabled',enabled+"");
+    return this.httpClient.get<Book[]>(this.urlApi, {params:param}).pipe();
   }
 
   updateBook(book: Book): Observable<any>{
     return this.httpClient.put(this.urlApi, book).pipe();
+  }
+
+  updateBooks(books: Book[]): Observable<any>{
+    return this.httpClient.put(`${this.urlApi}/books`, books).pipe();
   }
 }

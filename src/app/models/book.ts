@@ -5,5 +5,5 @@ export class Book{
     description: string;
     createAt: Time;
     updateAt: Time;
-    enable: boolean;
+    enabled: boolean;
 }
