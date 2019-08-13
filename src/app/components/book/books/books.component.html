@@ -33,7 +33,8 @@
     </ng-template>
     <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
         <tr>
-            <td [attr.colspan]="columns.length + 1">
+            <td [attr.colspan]="columns.length-1">
+                <div innerHtml="{{rowData.description}}"></div>
             </td>
         </tr>
     </ng-template>

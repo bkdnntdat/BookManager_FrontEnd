@@ -37,4 +37,9 @@ export class BookDisabledListComponent implements OnInit {
     this.bookService.updateBooks(this.books).subscribe();
     this.location.back();
   }
+
+  deteleBook(id: number): void{
+    this.bookService.deleteBook(id).subscribe();
+    this.location.back();
+  }
 }

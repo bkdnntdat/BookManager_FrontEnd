@@ -31,6 +31,7 @@
                 <!-- <div *ngIf="col.header!=='Description'"> -->
                 <div *ngIf="col.header=='Enable'; else show">
                     <p-inputSwitch [(ngModel)]="rowData[col.field]"></p-inputSwitch>
+                    <button pButton type="button" label="Delete" class="ui-button-danger" (click)="deteleBook(rowData.id)"></button>
                 </div>
                 <ng-template #show>
                     <div *ngIf="col.header=='Title'; else showAuthor">
@@ -45,12 +46,6 @@
                     </ng-template>
                 </ng-template>
                 <!-- </div> -->
-            </td>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
-        <tr>
-            <td [attr.colspan]="columns.length + 1">
             </td>
         </tr>
     </ng-template>

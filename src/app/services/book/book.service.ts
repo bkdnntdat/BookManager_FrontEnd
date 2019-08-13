@@ -32,4 +32,9 @@ export class BookService {
   updateBooks(books: Book[]): Observable<any>{
     return this.httpClient.put(`${this.urlApi}/books`, books).pipe();
   }
+
+  deleteBook(id: number): Observable<any>{
+    let param = new HttpParams().set('id',id+"");
+    return this.httpClient.delete(this.urlApi, {params: param}).pipe();
+  }
 }
