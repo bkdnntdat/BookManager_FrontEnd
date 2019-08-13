@@ -4,7 +4,7 @@ export class Book{
     id: number;
     title: string;
     description: string;
-    createAt: Time;
-    updateAt: Time;
+    createdAt: Time;
+    updatedAt: Time;
     enabled: boolean;
 }

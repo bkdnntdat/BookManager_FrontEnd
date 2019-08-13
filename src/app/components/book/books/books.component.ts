@@ -24,7 +24,10 @@ export class BooksComponent implements OnInit {
     this.cols = [
       { field: 'id', header: 'Id', display: 'none' },
       { field: 'title', header: 'Title' },
-      { field: 'author', header: 'Author' }
+      { field: 'author', header: 'Author' },
+      { field: 'createdAt', header: 'Created At'},
+      { field: 'updatedAt', header: 'Updated At'},
+      { field:'year', header: 'Year'}
   ];
   }
 
