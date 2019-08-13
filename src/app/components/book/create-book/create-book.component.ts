@@ -15,6 +15,7 @@ export class BookComponent implements OnInit {
   title: string;
   description: string;
   author: string;
+  year: number;
   user:User;
 
   constructor(private httpClient:HttpClient,
@@ -27,11 +28,12 @@ export class BookComponent implements OnInit {
   }
 
   post(): void{
-    console.log(this.title, this.description, this.author);
+    console.log(this.title, this.description, this.author, this.year);
     const body={
       title: this.title,
       description: this.description,
       author: this.author,
+      year: this.year,
       user: this.user
     }
 

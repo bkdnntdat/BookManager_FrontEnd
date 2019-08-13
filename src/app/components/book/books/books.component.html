@@ -15,13 +15,18 @@
                 </a>
             </td>
             <td *ngFor="let col of columns" [ngStyle]="{'display': col.display}">
-                <div *ngIf="col.header=='Title'; else showAuthor">
+                <div *ngIf="col.header=='Title'; else show">
                     <a routerLink="../editBook/{{rowData.id}}">
                                 {{rowData[col.field]}}    
                             </a>
                 </div>
-                <ng-template #showAuthor>
-                    {{rowData[col.field]}}
+                <ng-template #show>
+                    <div *ngIf="rowData[col.field]==null || rowData[col.field]==0 ; else showField">
+                        <p style="text-align:center">-</p>
+                    </div>
+                    <ng-template #showField>
+                        <p style="text-align:center">{{rowData[col.field]}}</p>
+                    </ng-template>
                 </ng-template>
             </td>
         </tr>
