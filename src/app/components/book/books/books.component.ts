@@ -27,7 +27,7 @@ export class BooksComponent implements OnInit {
       { field: 'author', header: 'Author' },
       { field: 'createdAt', header: 'Created At'},
       { field: 'updatedAt', header: 'Updated At'},
-      { field:'year', header: 'Year'},
+      { field: 'year', header: 'Year'},
       { field: 'description', header: 'Description', display:'none'}
   ];
   }

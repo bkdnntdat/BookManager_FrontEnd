@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from 'src/app/models/book';
 import { BookService } from 'src/app/services/book/book.service';
 import { Location } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-disabled-list',
@@ -16,7 +17,8 @@ export class BookDisabledListComponent implements OnInit {
   
   constructor(
     private bookService: BookService,
-    private location: Location) { }
+    private location: Location,
+    private router: Router) { }
 
   ngOnInit() {
     this.getBooks();
