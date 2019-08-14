@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
         let param = new HttpParams().append('token', this.tokenService.getToken());
         this.httpClient.get('http://localhost:8080/user/token', {params:param}).subscribe((resp:any) =>{
         if(resp.code == null){
-          this.router.navigate(['user']);
+          this.router.navigate(['books']);
         }
         else{
           this.router.navigate(['confirmCode']);
@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
     let param = new HttpParams().append('token', this.tokenService.getToken());
     this.httpClient.get('http://localhost:8080/user', {params:param}).subscribe((resp:any) =>{
       if(resp.code == null){
-        this.router.navigate(['user']);
+        this.router.navigate(['books']);
       }
       else{
         this.router.navigate(['confirmCode']);
