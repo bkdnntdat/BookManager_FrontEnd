@@ -1,2 +1,16 @@
+<p-sidebar [(visible)]="visibleSidebar1" [baseZIndex]="10000">
+    <h1 style="font-weight:normal">Menu</h1>
+    <a routerLink="/books" class="block">Books</a>
+    <a routerLink="/bookDisableList" class="block">Book Disable List</a>
+    <a routerLink="/createBook" class="block">Create Book</a>
+    <div *ngIf="readLocalStorage() ; else logout">
+        <button pButton type="button" label="Logout" class="ui-button-rounded ui-button-danger" (click)="logouta()"></button>
+    </div>
+    <ng-template #logout>
+        <button pButton type="button" label="Login" class="ui-button-rounded ui-button-success" (click)="login()"></button>
+    </ng-template>
+</p-sidebar>
+
+<button pButton type="button" (click)="visibleSidebar1 = true" icon="pi pi-list"></button>
 <router-outlet>
 </router-outlet>

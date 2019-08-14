@@ -17,7 +17,7 @@ export class TokenService {
     return localStorage[this.jwtToken];
   }
 
-  clearToken() {
-    localStorage.removeItem[this.jwtToken];
+  clearToken(): void {
+    localStorage.removeItem(this.jwtToken);
   }
 }

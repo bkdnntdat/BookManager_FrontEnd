@@ -1,3 +1,9 @@
+<!-- load momentJS (required for angular-moment) -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+
+<!-- load angular-moment -->
+<script src="//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.9.0/angular-moment.min.js"></script>
+
 <p-table [columns]="cols" [value]="books" dataKey="title">
     <ng-template pTemplate="header" let-columns>
         <tr>
@@ -25,7 +31,12 @@
                         <p style="text-align:center">-</p>
                     </div>
                     <ng-template #showField>
-                        <p style="text-align:center">{{rowData[col.field]}}</p>
+                        <div *ngIf="col.header!=='Created At' && col.header!=='Updated At'; else showTime">
+                            <p style="text-align:center">{{rowData[col.field]}}</p>
+                        </div>
+                        <ng-template #showTime>
+                            <p style="text-align:center">{{rowData[col.field] || amCalendar }}</p>
+                        </ng-template>
                     </ng-template>
                 </ng-template>
             </td>

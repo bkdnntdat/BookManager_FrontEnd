@@ -19,6 +19,7 @@ import { BookDisabledListComponent } from './components/book/book-disabled-list/
 import {InputSwitchModule} from 'primeng/inputswitch';
 import {TableModule} from 'primeng/table';
 import {MatTableModule} from '@angular/material/table';
+import {SidebarModule} from 'primeng/sidebar';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import {MatTableModule} from '@angular/material/table';
     ButtonModule,
     InputSwitchModule,
     TableModule,
-    MatTableModule
+    MatTableModule,
+    SidebarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

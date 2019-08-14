@@ -67,6 +67,7 @@ export class LoginComponent implements OnInit {
   }
 
   getUser(): void{
+    if(this.tokenService.getToken()==null) return;
     let param = new HttpParams().append('token', this.tokenService.getToken());
     this.httpClient.get('http://localhost:8080/user', {params:param}).subscribe((resp:any) =>{
       if(resp.code == null){
