@@ -1,4 +1,7 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { User } from 'src/app/models/user';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -6,8 +9,6 @@ import { Injectable } from '@angular/core';
 export class TokenService {
 
   readonly jwtToken = 'jwtToken';
-
-  constructor() { }
 
   saveToken(token: string) {
     localStorage[this.jwtToken] = token;

@@ -8,6 +8,8 @@ import { BookComponent } from './components/book/create-book/create-book.compone
 import { EditBookComponent } from './components/book/edit-book/edit-book.component';
 import { BooksComponent } from './components/book/books/books.component';
 import { BookDisabledListComponent } from './components/book/book-disabled-list/book-disabled-list.component';
+import { BookDetailComponent } from './components/book/book-detail/book-detail.component';
+import { MyListBookComponent } from './components/book/my-list-book/my-list-book.component';
 
 
 const routes: Routes = [
@@ -47,6 +49,14 @@ const routes: Routes = [
   {
     path: 'bookDisableList',
     component: BookDisabledListComponent
+  },
+  {
+    path: 'bookDetail/:id',
+    component: BookDetailComponent
+  },
+  {
+    path: 'my-books',
+    component: MyListBookComponent
   }
 ];
 

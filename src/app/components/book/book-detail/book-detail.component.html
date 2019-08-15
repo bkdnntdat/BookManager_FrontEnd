@@ -1,0 +1,21 @@
+<div *ngIf="book">
+    <h1>{{book.title}}</h1>
+    <span class="color">{{book.createdAt | timeAgo}}</span>
+    <span *ngIf="book.updatedAt" class="color">, updated at: {{book.updatedAt | timeAgo}}</span>
+    <span class="block color">Author: {{book.author}}</span>
+    <span class="block color">by user: {{book.user.email}}</span>
+    <div innerHtml="{{book.description}}"></div>
+
+    <p class="block"></p>
+    <div *ngIf="comments">
+        <h2>Comment</h2>
+        <div *ngFor="let comment of comments" class="margin">
+            <p-fieldset legend="{{comment.user.email}}">
+                <p>{{comment.message}}</p>
+                <p class="float">{{comment.time}}</p>
+            </p-fieldset>
+        </div>
+        <textarea pInputTextarea [(ngModel)]="message" placeholder="Comment"></textarea>
+        <button pButton type="button" label="Comment" class="ui-button-rounded" (click)="postComment()"></button>
+    </div>
+</div>

@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/auth/login/login.component';
-import { HttpClientModule }    from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS }    from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { RegisterComponent } from './components/users/register/register.component';
 import { HomeComponent } from './home/home.component';
@@ -20,6 +20,11 @@ import {InputSwitchModule} from 'primeng/inputswitch';
 import {TableModule} from 'primeng/table';
 import {MatTableModule} from '@angular/material/table';
 import {SidebarModule} from 'primeng/sidebar';
+import {TimeAgoPipe} from 'time-ago-pipe';
+import { BookDetailComponent } from './components/book/book-detail/book-detail.component';
+import {FieldsetModule} from 'primeng/fieldset';
+import { MyListBookComponent } from './components/book/my-list-book/my-list-book.component';
+import { JwtInterceptor } from './helper/jwt.interceptor';
 
 @NgModule({
   declarations: [
@@ -31,7 +36,10 @@ import {SidebarModule} from 'primeng/sidebar';
     BookComponent,
     EditBookComponent,
     BooksComponent,
-    BookDisabledListComponent
+    BookDisabledListComponent,
+    TimeAgoPipe,
+    BookDetailComponent,
+    MyListBookComponent
   ],
   imports: [
     BrowserModule,
@@ -45,9 +53,12 @@ import {SidebarModule} from 'primeng/sidebar';
     InputSwitchModule,
     TableModule,
     MatTableModule,
-    SidebarModule
+    SidebarModule,
+    FieldsetModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

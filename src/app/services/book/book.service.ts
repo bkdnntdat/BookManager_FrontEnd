@@ -25,6 +25,10 @@ export class BookService {
     return this.httpClient.get<Book[]>(this.urlApi, {params:param}).pipe();
   }
 
+  getMyBooks(): Observable<Book[]>{
+    return this.httpClient.get<Book[]>(`${this.urlApi}/user`).pipe();
+  }
+
   updateBook(book: Book): Observable<any>{
     return this.httpClient.put(this.urlApi, book).pipe();
   }

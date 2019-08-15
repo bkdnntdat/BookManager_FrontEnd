@@ -1,4 +1,5 @@
 import { Time } from '@angular/common';
+import { User } from './user';
 
 export class Book{
     id: number;
@@ -7,4 +8,5 @@ export class Book{
     createdAt: Time;
     updatedAt: Time;
     enabled: boolean;
+    user: User;
 }

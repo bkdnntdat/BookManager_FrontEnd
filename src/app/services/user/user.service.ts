@@ -28,4 +28,9 @@ export class UserService {
     getToken():Observable<string>{
       return this.httpClient.get<string>(`${this.url}/login`).pipe()
     }
+
+    getUser(): Observable<User>{
+      let param = new HttpParams().set('token',this.tokenService.getToken());
+      return this.httpClient.get<User>(this.urlApi+"/token", {params:param}).pipe();
+    }
 }
