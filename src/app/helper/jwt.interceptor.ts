@@ -6,10 +6,10 @@ import { TokenService } from '../services/token/token.service';
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-    constructor(private authenticationService: TokenService) { }
+    constructor(private tokenService: TokenService) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        let token = this.authenticationService.getToken();
+        let token = this.tokenService.getToken();
         if (token) {
             request = request.clone({
                 setHeaders: {

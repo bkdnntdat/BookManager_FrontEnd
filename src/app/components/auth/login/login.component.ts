@@ -44,22 +44,20 @@ export class LoginComponent implements OnInit {
       email: this.email,
       password: this.password,
     }
+
     this.httpClient.post('http://localhost:8080/auth', body)
       .subscribe((response: any) => {
         this.token = response.token;
-        this.tokenService.clearToken();
         this.tokenService.saveToken(this.token);
-        
-        let param = new HttpParams().append('token', this.tokenService.getToken());
-        this.httpClient.get('http://localhost:8080/user/token', {params:param}).subscribe((resp:any) =>{
-        if(resp.code == null){
-          this.router.navigate(['books']);
-        }
-        else{
-          this.router.navigate(['confirmCode']);
-        }
-        })
       })
+    // this.httpClient.get('http://localhost:8080/user/token').subscribe((resp:any) =>{
+    //   if(resp.code == null){
+    //     this.router.navigate(['books']);
+    //   }
+    //   else{
+    //     this.router.navigate(['confirmCode']);
+    //   }
+    //   }) 
   }
 
   signUp(): void{
@@ -68,8 +66,7 @@ export class LoginComponent implements OnInit {
 
   getUser(): void{
     if(this.tokenService.getToken()==null) return;
-    let param = new HttpParams().append('token', this.tokenService.getToken());
-    this.httpClient.get('http://localhost:8080/user', {params:param}).subscribe((resp:any) =>{
+    this.httpClient.get('http://localhost:8080/user').subscribe((resp:any) =>{
       if(resp.code == null){
         this.router.navigate(['books']);
       }

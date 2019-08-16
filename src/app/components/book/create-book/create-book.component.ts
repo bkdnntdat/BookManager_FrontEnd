@@ -39,12 +39,11 @@ export class BookComponent implements OnInit {
 
     this.httpClient.post("http://localhost:8080/book", body).subscribe(resp => {});
     
-    this.goBack();
+    this.goBack(); 
   }
 
   getUser(): void{
-    let param = new HttpParams().append('token', this.tokenService.getToken());
-    this.httpClient.get('http://localhost:8080/user/token', {params:param}).subscribe((resp:any) =>{this.user = resp});
+    this.httpClient.get('http://localhost:8080/user/token').subscribe((resp:any) =>{this.user = resp});
   }
 
   goBack():void{

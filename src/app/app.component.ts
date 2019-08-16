@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenService } from './services/token/token.service';
 import { Router } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -10,7 +11,9 @@ import { Router } from '@angular/router';
 export class AppComponent{
   constructor(
     private router: Router,
-    private tokenService:TokenService){};
+    private tokenService:TokenService,
+    private httpClient:HttpClient){};
+
   url = 'http://localhost:4200';
   token = this.tokenService.getToken();
 
@@ -19,8 +22,9 @@ export class AppComponent{
   }
 
   logouta():void{
-    this.tokenService.clearToken();
+    this.httpClient.delete("http://localhost:8080/auth").subscribe();
     this.router.navigate(['login']);
+    this.tokenService.clearToken();
   }
 
   readLocalStorage(): string{

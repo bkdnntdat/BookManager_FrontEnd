@@ -15,7 +15,7 @@ import { MyListBookComponent } from './components/book/my-list-book/my-list-book
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/books',
     pathMatch: 'full'
   },
   {

@@ -30,7 +30,6 @@ export class UserService {
     }
 
     getUser(): Observable<User>{
-      let param = new HttpParams().set('token',this.tokenService.getToken());
-      return this.httpClient.get<User>(this.urlApi+"/token", {params:param}).pipe();
+      return this.httpClient.get<User>(this.urlApi+"/token").pipe();
     }
 }

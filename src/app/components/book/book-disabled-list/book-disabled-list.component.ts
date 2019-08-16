@@ -31,7 +31,8 @@ export class BookDisabledListComponent implements OnInit {
       { field: 'updatedAt', header: 'Updated At'},
       { field: 'year', header: 'Year'},
       { field: 'description', header: 'Description', display:'none'},
-      { field: 'enabled', header: 'Enable' }
+      { field: 'enabled', header: 'Enable' },
+      { field: 'edit-delete', header:'Edit/Delete'}
   ];
   }
 
@@ -40,12 +41,14 @@ export class BookDisabledListComponent implements OnInit {
   }
 
   save():void{
-    this.bookService.updateBooks(this.books).subscribe();
-    this.location.back();
+    this.bookService.updateBooks(this.books).subscribe(resp =>{this.getBooks()});
   }
 
   deteleBook(id: number): void{
     this.bookService.deleteBook(id).subscribe();
-    this.location.back();
+  }
+
+  editBook(id: number): void{
+    this.router.navigate(['/editBook/'+id]);
   }
 }
