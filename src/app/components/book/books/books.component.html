@@ -1,7 +1,9 @@
 <input type="text" pInputText [(ngModel)]="search" placeholder="Search" />
 <button pButton type="submit" (click)="sendRequestSearch()" icon="pi pi-search"></button>
+<p-dropdown [options]="itemsPerPage" [(ngModel)]="selectedItemsPerPage" placeholder="{{selectedItemsPerPage}}"></p-dropdown>
+<p>Selected Item Per Page: {{selectedItemsPerPage ? selectedItemsPerPage : 'none'}}</p>
 
-<p-table [columns]="cols" [value]="books" dataKey="title">
+<p-table [columns]="cols" [value]="books" dataKey="title" [paginator]="true" [rows]="selectedItemsPerPage">
     <ng-template pTemplate="header" let-columns>
         <tr>
             <th style="width: 3em"></th>

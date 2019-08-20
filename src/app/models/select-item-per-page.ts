@@ -1,0 +1,3 @@
+class ItemPerPage{
+    number:number;
+}

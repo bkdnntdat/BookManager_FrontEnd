@@ -5,6 +5,7 @@ import { Location } from '@angular/common';
 import { UserService } from 'src/app/services/user/user.service';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { SortEvent } from 'src/app/models/sort/sortevent';
+import { SelectItem } from 'primeng/components/common/selectitem';
 
 @Component({
   selector: 'app-books',
@@ -18,12 +19,23 @@ export class BooksComponent implements OnInit {
   cols: any[];
 
   search: string;
+
+  itemsPerPage: SelectItem[];
+
+  selectedItemsPerPage:number;
   
   constructor(
     private bookService: BookService,
     private location: Location,
     private userService: UserService,
-    private httpClient: HttpClient) { }
+    private httpClient: HttpClient) {
+      this.itemsPerPage=[
+        {label:'5',value:5},
+        {label:'10',value:10},
+        {label:'20',value:20},
+      ];
+      this.selectedItemsPerPage=5;
+    }
 
   ngOnInit() {
 

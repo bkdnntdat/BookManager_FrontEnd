@@ -25,6 +25,8 @@ import { BookDetailComponent } from './components/book/book-detail/book-detail.c
 import {FieldsetModule} from 'primeng/fieldset';
 import { MyListBookComponent } from './components/book/my-list-book/my-list-book.component';
 import { JwtInterceptor } from './helper/jwt.interceptor';
+import {NgxPaginationModule} from 'ngx-pagination';
+import {DropdownModule} from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
@@ -54,7 +56,9 @@ import { JwtInterceptor } from './helper/jwt.interceptor';
     TableModule,
     MatTableModule,
     SidebarModule,
-    FieldsetModule
+    FieldsetModule,
+    NgxPaginationModule,
+    DropdownModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
