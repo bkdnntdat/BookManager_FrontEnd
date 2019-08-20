@@ -48,7 +48,7 @@ export class BookDetailComponent implements OnInit {
       book: this.book
     }
 
-    this.httpClient.post('http://localhost:8080/book/comments', body).subscribe((comment:any)=> {
+    this.httpClient.post('http://localhost:8080/api/books/comments', body).subscribe((comment:any)=> {
       this.comment = comment;
       this.comments.push(this.comment); 
       this.message = ""; 

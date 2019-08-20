@@ -12,7 +12,7 @@ export class BookService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  private urlApi = "http://localhost:8080/book";
+  private urlApi = "http://localhost:8080/api/books";
 
   constructor(private httpClient:HttpClient) { }
 

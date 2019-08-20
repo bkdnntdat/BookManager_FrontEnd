@@ -37,7 +37,7 @@ export class BookComponent implements OnInit {
       user: this.user
     }
 
-    this.httpClient.post("http://localhost:8080/book", body).subscribe(resp => {});
+    this.httpClient.post("http://localhost:8080/api/books", body).subscribe(resp => {});
     
     this.goBack(); 
   }

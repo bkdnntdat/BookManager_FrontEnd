@@ -61,7 +61,7 @@ export class BooksComponent implements OnInit {
 
   sendRequestSearch():void{
     let param = new HttpParams().append('key', this.search+"");
-    this.httpClient.get("http://localhost:8080/book/search",{params:param}).subscribe((books:any) => this.books = books);
+    this.httpClient.get("http://localhost:8080/api/books/search",{params:param}).subscribe((books:any) => this.books = books);
   }
 
   customSort(event: SortEvent) {
