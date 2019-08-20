@@ -8,6 +8,7 @@ import { Comment } from 'src/app/models/comment';
 import { CommentService } from 'src/app/services/comment/comment.service';
 import { UserService } from 'src/app/services/user/user.service';
 import { User } from 'src/app/models/user';
+import { TokenService } from 'src/app/services/token/token.service';
 
 @Component({
   selector: 'app-book-detail',
@@ -21,6 +22,7 @@ export class BookDetailComponent implements OnInit {
   message: string;
   user: User;
   comment: Comment;
+  token: string;
 
   constructor(
     private httpClient: HttpClient,
@@ -28,9 +30,11 @@ export class BookDetailComponent implements OnInit {
     private bookService: BookService,
     private location: Location,
     private commentService: CommentService,
-    private userService: UserService) { }
+    private userService: UserService,
+    private tokenService: TokenService) { }
 
   ngOnInit() {
+    this.token = this.tokenService.getToken();
     this.getBook();
     this.userService.getUser().subscribe(user => this.user = user);
   }

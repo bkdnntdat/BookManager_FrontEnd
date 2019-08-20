@@ -56,7 +56,7 @@ export class BooksComponent implements OnInit {
   }
 
   getBooks():void{
-    this.bookService.getBooks(true).subscribe(books => this.books = books);
+    this.bookService.getBooks().subscribe(books => this.books = books);
   }
 
   sendRequestSearch():void{

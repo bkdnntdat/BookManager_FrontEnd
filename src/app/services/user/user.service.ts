@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class UserService {
 
   private url='http://localhost:4200';
-  private urlApi='http://localhost:8080/user';
+  private urlApi='http://localhost:8080/api/users';
   user: User;
 
   httpOptions = {
@@ -30,6 +30,6 @@ export class UserService {
     }
 
     getUser(): Observable<User>{
-      return this.httpClient.get<User>(this.urlApi+"/token").pipe();
+      return this.httpClient.get<User>(this.urlApi+"/user").pipe();
     }
 }

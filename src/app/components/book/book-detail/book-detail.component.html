@@ -16,7 +16,9 @@
                 <p class="float">{{comment.time}}</p>
             </p-fieldset>
         </div>
-        <textarea pInputTextarea [(ngModel)]="message" placeholder="Comment"></textarea>
-        <button pButton type="button" label="Comment" class="ui-button-rounded" (click)="postComment()"></button>
+        <div *ngIf="token">
+            <textarea pInputTextarea [(ngModel)]="message" placeholder="Comment"></textarea>
+            <button pButton type="button" label="Comment" class="ui-button-rounded" (click)="postComment()"></button>
+        </div>
     </div>
 </div>

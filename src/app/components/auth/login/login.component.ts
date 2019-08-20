@@ -4,14 +4,18 @@ import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http'
 import { Router } from '@angular/router';
 import { TokenService } from '../../../services/token/token.service';
 import { catchError } from 'rxjs/operators';
+import {Message} from 'primeng/components/common/api';
+import {MessageService} from 'primeng/components/common/messageservice';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  styleUrls: ['./login.component.scss'],
+  providers:[MessageService]
 })
 export class LoginComponent implements OnInit {
   // @ViewChild('email') emailView : ElementRef;
+  msgs: Message[] = [];
 
   login: Login;
   email: string;
@@ -32,12 +36,14 @@ export class LoginComponent implements OnInit {
     console.log(this.email, this.password);
 
     if(this.email==''){
-      alert('Email non null');
+      this.msgs = [];
+      this.msgs.push({severity:'error', summary:'Error Message', detail:'Email is required'});
       return;
     }
 
     if(this.password==''){
-      alert('Password non null');
+      this.msgs = [];
+      this.msgs.push({severity:'error', summary:'Error Message', detail:'Password is required'});
       return;
     }
 
@@ -46,7 +52,7 @@ export class LoginComponent implements OnInit {
       password: this.password,
     }
 
-    this.httpClient.post('http://localhost:8080/auth', body)
+    this.httpClient.post('http://localhost:8080/api/auth', body)
       .subscribe((response: any) => {
         console.log(response);
         if(response.token!=null){

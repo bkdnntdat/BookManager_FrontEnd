@@ -21,9 +21,12 @@ export class BookService {
     return this.httpClient.get<Book>(url).pipe();
   }
 
-  getBooks(enabled: Boolean): Observable<Book[]>{
-    let param = new HttpParams().set('enabled',enabled+"");
-    return this.httpClient.get<Book[]>(this.urlApi, {params:param}).pipe();
+  getBooks(): Observable<Book[]>{
+    return this.httpClient.get<Book[]>(this.urlApi).pipe();
+  }
+
+  getDisableBooks(): Observable<Book[]>{
+    return this.httpClient.get<Book[]>(this.urlApi+"/disable-books").pipe();
   }
 
   getMyBooks(): Observable<Book[]>{

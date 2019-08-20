@@ -43,7 +43,7 @@ export class BookComponent implements OnInit {
   }
 
   getUser(): void{
-    this.httpClient.get('http://localhost:8080/user/token').subscribe((resp:any) =>{this.user = resp});
+    this.httpClient.get('http://localhost:8080/api/users/user').subscribe((resp:any) =>{this.user = resp});
   }
 
   goBack():void{

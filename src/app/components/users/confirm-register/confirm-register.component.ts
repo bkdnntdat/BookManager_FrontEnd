@@ -32,14 +32,13 @@ export class ConfirmRegisterComponent implements OnInit {
       token: this.tokenService.getToken()
     }
     
-    this.httpClient.post('http://localhost:8080/user/confirm', body).subscribe((resp:any) =>{
+    this.httpClient.post('http://localhost:8080/api/users/confirm', body).subscribe((resp:any) =>{
       this.tokenService.saveToken(resp.token);
       this.router.navigate(['user'])
     });
   }
   
   getUser(): void{
-    let param = new HttpParams().append('token', this.tokenService.getToken());
-    this.httpClient.get('http://localhost:8080/user/token', {params:param}).subscribe((resp:any) =>{this.user = resp});
+    this.httpClient.get('http://localhost:8080/api/users/user').subscribe((resp:any) =>{this.user = resp});
   }
 }

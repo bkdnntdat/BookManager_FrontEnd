@@ -22,7 +22,7 @@ export class AppComponent{
   }
 
   logouta():void{
-    this.httpClient.delete("http://localhost:8080/auth").subscribe();
+    this.httpClient.delete("http://localhost:8080/api/auth").subscribe();
     this.router.navigate(['login']);
     this.tokenService.clearToken();
   }

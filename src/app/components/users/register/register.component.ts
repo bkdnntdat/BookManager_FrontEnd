@@ -2,11 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import { Router } from '@angular/router';
 import { TokenService } from 'src/app/services/token/token.service';
+import {Message} from 'primeng/components/common/api';
+import {MessageService} from 'primeng/components/common/messageservice';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  styleUrls: ['./register.component.scss'],
+  providers:[MessageService]
 })
 export class RegisterComponent implements OnInit {
 
@@ -32,12 +35,12 @@ export class RegisterComponent implements OnInit {
       password: this.password,
     }
 
-    this.httpClient.post('http://localhost:8080/user',body).subscribe((response:any) => {
+    this.httpClient.post('http://localhost:8080/api/users',body).subscribe((response:any) => {
       console.log(response);
       this.tokenService.saveToken(response.token);
     }); 
 
-    this.router.navigate(['confirmCode']);
+    this.router.navigate(['books']);
   }
 
 }

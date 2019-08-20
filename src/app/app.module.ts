@@ -27,6 +27,9 @@ import { MyListBookComponent } from './components/book/my-list-book/my-list-book
 import { JwtInterceptor } from './helper/jwt.interceptor';
 import {NgxPaginationModule} from 'ngx-pagination';
 import {DropdownModule} from 'primeng/dropdown';
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
+
 
 @NgModule({
   declarations: [
@@ -58,7 +61,9 @@ import {DropdownModule} from 'primeng/dropdown';
     SidebarModule,
     FieldsetModule,
     NgxPaginationModule,
-    DropdownModule
+    DropdownModule,
+    MessagesModule,
+    MessageModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

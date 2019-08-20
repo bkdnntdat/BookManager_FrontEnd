@@ -37,7 +37,7 @@ export class BookDisabledListComponent implements OnInit {
   }
 
   getBooks():void{
-    this.bookService.getBooks(false).subscribe(books => this.books = books);
+    this.bookService.getDisableBooks().subscribe(books => this.books = books);
   }
 
   save():void{
