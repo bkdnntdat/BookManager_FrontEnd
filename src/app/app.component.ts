@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { TokenService } from './services/token/token.service';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { UserService } from './services/user/user.service';
+import { User } from './models/user';
 
 @Component({
   selector: 'app-root',
@@ -9,10 +11,13 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent{
+  user: User;
   constructor(
     private router: Router,
     private tokenService:TokenService,
-    private httpClient:HttpClient){};
+    private httpClient:HttpClient,
+    private userService: UserService){
+    };
 
   url = 'http://localhost:4200';
   token = this.tokenService.getToken();
@@ -23,11 +28,16 @@ export class AppComponent{
 
   logouta():void{
     this.httpClient.delete("http://localhost:8080/api/auth").subscribe();
-    this.router.navigate(['login']);
     this.tokenService.clearToken();
+    this.userService.saveUser();
+    this.router.navigate(['login']);
   }
 
   readLocalStorage(): string{
     return this.tokenService.getToken();
+  }
+
+  getUser():User{
+    return this.userService.getUserStatic();
   }
 }

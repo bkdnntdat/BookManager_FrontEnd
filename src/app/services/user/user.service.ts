@@ -29,7 +29,15 @@ export class UserService {
       return this.httpClient.get<string>(`${this.url}/login`).pipe()
     }
 
+    saveUser():void{
+      this.getUser().subscribe(user => this.user = user);
+    }
+
     getUser(): Observable<User>{
       return this.httpClient.get<User>(this.urlApi+"/user").pipe();
+    }
+
+    getUserStatic():User{
+      return this.user;
     }
 }

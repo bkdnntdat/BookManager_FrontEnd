@@ -6,6 +6,8 @@ import { TokenService } from '../../../services/token/token.service';
 import { catchError } from 'rxjs/operators';
 import {Message} from 'primeng/components/common/api';
 import {MessageService} from 'primeng/components/common/messageservice';
+import { AppComponent } from 'src/app/app.component';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +27,8 @@ export class LoginComponent implements OnInit {
   constructor(
     private httpClient: HttpClient,
     private router: Router,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
@@ -34,18 +37,6 @@ export class LoginComponent implements OnInit {
 
   sendRequestLogin(): void {
     console.log(this.email, this.password);
-
-    if(this.email==''){
-      this.msgs = [];
-      this.msgs.push({severity:'error', summary:'Error Message', detail:'Email is required'});
-      return;
-    }
-
-    if(this.password==''){
-      this.msgs = [];
-      this.msgs.push({severity:'error', summary:'Error Message', detail:'Password is required'});
-      return;
-    }
 
     const body = {
       email: this.email,
@@ -59,6 +50,7 @@ export class LoginComponent implements OnInit {
           this.token = response.token;
           this.tokenService.saveToken(this.token);
           this.router.navigate(['books']);
+          this.userService.saveUser();
         }
       },
       error => {alert("Email or password is incorrect")})

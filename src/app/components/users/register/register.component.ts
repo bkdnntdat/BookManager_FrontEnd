@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { TokenService } from 'src/app/services/token/token.service';
 import {Message} from 'primeng/components/common/api';
 import {MessageService} from 'primeng/components/common/messageservice';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-register',
@@ -20,7 +21,8 @@ export class RegisterComponent implements OnInit {
 
   constructor(private httpClient: HttpClient,
     private router: Router,
-    private tokenService: TokenService) {}
+    private tokenService: TokenService,
+    private userService: UserService) {}
 
   ngOnInit() {
   }
@@ -38,9 +40,12 @@ export class RegisterComponent implements OnInit {
     this.httpClient.post('http://localhost:8080/api/users',body).subscribe((response:any) => {
       console.log(response);
       this.tokenService.saveToken(response.token);
-    }); 
+      this.userService.saveUser();
+      this.router.navigate(['books']);
+    },
+    error => {alert("asd")}
+    ); 
 
-    this.router.navigate(['books']);
   }
 
 }

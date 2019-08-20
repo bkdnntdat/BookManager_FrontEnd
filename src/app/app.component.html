@@ -1,9 +1,13 @@
 <p-sidebar [(visible)]="visibleSidebar1" [baseZIndex]="10000">
     <h1 style="font-weight:normal">Menu</h1>
     <a routerLink="/books" class="block aaa">Books</a>
-    <a routerLink="/my-books" class="block aaa">My Books</a>
-    <a routerLink="/bookDisableList" class="block aaa">Book Disable List</a>
-    <a routerLink="/createBook" class="block aaa">Create Book</a>
+    <div *ngIf="getUser()">
+        <a routerLink="/my-books" class="block aaa">My Books</a>
+        <div *ngIf="getUser().role.name=='ROLE_ADMIN'">
+            <a routerLink="/bookDisableList" class="block aaa">Book Disable List</a>
+        </div>
+        <a routerLink="/createBook" class="block aaa">Create Book</a>
+    </div>
     <div *ngIf="readLocalStorage() ; else logout" class="aaa">
         <button pButton type="button" label="Logout" class="ui-button-rounded ui-button-danger" (click)="logouta()"></button>
     </div>
