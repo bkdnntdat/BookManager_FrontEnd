@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Login } from '../../../models/login';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { TokenService } from '../../../services/token/token.service';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
@@ -20,11 +21,11 @@ export class LoginComponent implements OnInit {
   constructor(
     private httpClient: HttpClient,
     private router: Router,
-    private tokenService: TokenService,
+    private tokenService: TokenService
   ) { }
 
   ngOnInit() {
-    this.getUser();
+    // this.getUser();
   }
 
   sendRequestLogin(): void {
@@ -47,9 +48,14 @@ export class LoginComponent implements OnInit {
 
     this.httpClient.post('http://localhost:8080/auth', body)
       .subscribe((response: any) => {
-        this.token = response.token;
-        this.tokenService.saveToken(this.token);
-      })
+        console.log(response);
+        if(response.token!=null){
+          this.token = response.token;
+          this.tokenService.saveToken(this.token);
+          this.router.navigate(['books']);
+        }
+      },
+      error => {alert("Email or password is incorrect")})
     // this.httpClient.get('http://localhost:8080/user/token').subscribe((resp:any) =>{
     //   if(resp.code == null){
     //     this.router.navigate(['books']);
@@ -64,14 +70,14 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['signup']);
   }
 
-  getUser(): void{
-    if(this.tokenService.getToken()==null) return;
-    this.httpClient.get('http://localhost:8080/user').subscribe((resp:any) =>{
-      if(resp.code == null){
-        this.router.navigate(['books']);
-      }
-      else{
-        this.router.navigate(['confirmCode']);
-      }
-    })}
+  // getUser(): void{
+  //   if(this.tokenService.getToken()==null) return;
+  //   this.httpClient.get('http://localhost:8080/user').subscribe((resp:any) =>{
+  //     if(resp.code == null){
+  //       this.router.navigate(['books']);
+  //     }
+  //     else{
+  //       this.router.navigate(['confirmCode']);
+  //     }
+  //   })}
 }

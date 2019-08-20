@@ -13,10 +13,14 @@ import { MyListBookComponent } from './components/book/my-list-book/my-list-book
 
 
 const routes: Routes = [
+  // {
+  //   path: '',
+  //   redirectTo: '/books',
+  //   pathMatch: 'full'
+  // },
   {
     path: '',
-    redirectTo: '/books',
-    pathMatch: 'full'
+    component: HomeComponent
   },
   {
     path: 'login',

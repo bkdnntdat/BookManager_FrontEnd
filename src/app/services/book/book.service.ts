@@ -8,10 +8,11 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 })
 export class BookService {
 
-  private urlApi = "http://localhost:8080/book";
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
+
+  private urlApi = "http://localhost:8080/book";
 
   constructor(private httpClient:HttpClient) { }
 

@@ -1,12 +1,13 @@
-<input type="text" pInputText [(ngModel)]="search" />
-<button pButton type="button" icon=c lass="ui-button-secondary"></button>
+<input type="text" pInputText [(ngModel)]="search" placeholder="Search" />
+<button pButton type="submit" (click)="sendRequestSearch()" icon="pi pi-search"></button>
 
 <p-table [columns]="cols" [value]="books" dataKey="title">
     <ng-template pTemplate="header" let-columns>
         <tr>
             <th style="width: 3em"></th>
-            <th *ngFor="let col of columns" [ngStyle]="{'display': col.display}">
+            <th *ngFor="let col of columns" [ngStyle]="{'display': col.display}" [pSortableColumn]="col.field">
                 {{col.header}}
+                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
             </th>
         </tr>
     </ng-template>
