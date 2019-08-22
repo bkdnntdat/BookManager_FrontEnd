@@ -9,4 +9,5 @@ export class Book{
     updatedAt: Time;
     enabled: boolean;
     user: User;
+    year: number;
 }

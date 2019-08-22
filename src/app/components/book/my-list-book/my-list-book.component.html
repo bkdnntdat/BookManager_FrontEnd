@@ -17,8 +17,11 @@
             <td *ngFor="let col of columns" [ngStyle]="{'display': col.display}">
                 <div *ngIf="col.header=='Title'; else show">
                     <a routerLink="../bookDetail/{{rowData.id}}">
-                                {{rowData[col.field]}}    
-                            </a>
+                        {{rowData[col.field]}}
+                        <div *ngIf="!rowData.enabled" style="display: inline">
+                            (Disabled)
+                        </div>
+                    </a>
                 </div>
                 <ng-template #show>
                     <div *ngIf="rowData[col.field]==null || rowData[col.field]==0 ; else showField">

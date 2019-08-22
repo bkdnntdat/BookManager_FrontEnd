@@ -40,12 +40,15 @@ export class RegisterComponent implements OnInit {
     this.httpClient.post('http://localhost:8080/api/users',body).subscribe((response:any) => {
       console.log(response);
       this.tokenService.saveToken(response.token);
-      this.userService.saveUser();
+      this.userService.saveUserStatic();
       this.router.navigate(['books']);
     },
     error => {alert("asd")}
     ); 
+  }
 
+  validation():void{
+    alert("Firstname, lastname, email, password is required");
   }
 
 }

@@ -10,15 +10,15 @@
     <p class="block"></p>
     <div *ngIf="comments">
         <h2>Comment</h2>
+        <div *ngIf="token">
+            <textarea pInputTextarea [(ngModel)]="message" placeholder="Comment" style="width: 100em; height: 50px;"></textarea>
+            <button pButton type="button" label="Comment" class="ui-button-rounded" (click)="postComment()" style="display: inline"></button>
+        </div>
         <div *ngFor="let comment of comments" class="margin">
             <p-fieldset legend="{{comment.user.email}}">
                 <p>{{comment.message}}</p>
-                <p class="float">{{comment.time}}</p>
+                <p class="float">{{comment.time | timeAgo}}</p>
             </p-fieldset>
-        </div>
-        <div *ngIf="token">
-            <textarea pInputTextarea [(ngModel)]="message" placeholder="Comment"></textarea>
-            <button pButton type="button" label="Comment" class="ui-button-rounded" (click)="postComment()"></button>
         </div>
     </div>
 </div>

@@ -37,5 +37,10 @@
         <p-message severity="error" text="Password is required"></p-message>
     </div>
 </label>
-    <button type="button" class="submit" (click)="signUp()">Sign Up</button>
+    <div *ngIf="first_name && last_name && email && password ; else validate">
+        <button type="button" (click)="signUp()">Sign Up</button>
+    </div>
+    <ng-template #validate>
+        <button type="button" (click)="validation()">Sign Up</button>
+    </ng-template>
 </div>

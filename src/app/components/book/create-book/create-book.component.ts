@@ -15,8 +15,7 @@ export class BookComponent implements OnInit {
   title: string;
   description: string;
   author: string;
-  year: number;
-  user:User;
+  year: string;
 
   constructor(private httpClient:HttpClient,
     private userService: UserService,
@@ -24,7 +23,6 @@ export class BookComponent implements OnInit {
     private localtion: Location) { }
 
   ngOnInit() {
-    this.getUser();
   }
 
   post(): void{
@@ -33,17 +31,12 @@ export class BookComponent implements OnInit {
       title: this.title,
       description: this.description,
       author: this.author,
-      year: this.year,
-      user: this.user
+      year: this.year
     }
 
-    this.httpClient.post("http://localhost:8080/api/books", body).subscribe(resp => {});
-    
-    this.goBack(); 
-  }
-
-  getUser(): void{
-    this.httpClient.get('http://localhost:8080/api/users/user').subscribe((resp:any) =>{this.user = resp});
+    this.httpClient.post("http://localhost:8080/api/books", body).subscribe(resp => {this.goBack();},
+    error => {alert("Title, description, author, year is required")}
+    );
   }
 
   goBack():void{

@@ -40,7 +40,8 @@ export class MyListBookComponent implements OnInit {
       { field: 'createdAt', header: 'Created At'},
       { field: 'updatedAt', header: 'Updated At'},
       { field: 'year', header: 'Year'},
-      { field: 'description', header: 'Description', display:'none'}
+      { field: 'description', header: 'Description', display:'none'},
+      { field: 'enabled', header:'Enable', display:'none'}
   ];
   }
 

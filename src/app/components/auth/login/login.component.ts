@@ -50,7 +50,7 @@ export class LoginComponent implements OnInit {
           this.token = response.token;
           this.tokenService.saveToken(this.token);
           this.router.navigate(['books']);
-          this.userService.saveUser();
+          this.userService.saveUserStatic();
         }
       },
       error => {alert("Email or password is incorrect")})
