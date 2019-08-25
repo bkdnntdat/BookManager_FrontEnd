@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './components/auth/login/login.component';
 import {RegisterComponent} from './components/users/register/register.component';
@@ -10,6 +10,7 @@ import { BooksComponent } from './components/book/books/books.component';
 import { BookDisabledListComponent } from './components/book/book-disabled-list/book-disabled-list.component';
 import { BookDetailComponent } from './components/book/book-detail/book-detail.component';
 import { MyListBookComponent } from './components/book/my-list-book/my-list-book.component';
+import { BooksUserComponent } from './components/book/books-user/books-user.component';
 
 
 const routes: Routes = [
@@ -47,7 +48,7 @@ const routes: Routes = [
     component: EditBookComponent
   },
   {
-    path: 'books',
+    path: 'books-admin',
     component: BooksComponent
   },
   {
@@ -61,6 +62,10 @@ const routes: Routes = [
   {
     path: 'my-books',
     component: MyListBookComponent
+  },
+  {
+    path: 'books',
+    component: BooksUserComponent
   }
 ];
 

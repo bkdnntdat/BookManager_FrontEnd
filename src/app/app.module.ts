@@ -29,6 +29,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import {DropdownModule} from 'primeng/dropdown';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
+import { BooksUserComponent } from './components/book/books-user/books-user.component';
+import {PaginatorModule} from 'primeng/paginator';
 
 
 @NgModule({
@@ -44,7 +46,8 @@ import {MessageModule} from 'primeng/message';
     BookDisabledListComponent,
     TimeAgoPipe,
     BookDetailComponent,
-    MyListBookComponent
+    MyListBookComponent,
+    BooksUserComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,8 @@ import {MessageModule} from 'primeng/message';
     NgxPaginationModule,
     DropdownModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    PaginatorModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
