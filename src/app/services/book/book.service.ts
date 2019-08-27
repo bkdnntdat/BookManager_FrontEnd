@@ -38,7 +38,7 @@ export class BookService {
   }
 
   updateBooks(books: Book[]): Observable<any>{
-    return this.httpClient.put(`${this.urlApi}/books`, books).pipe();
+    return this.httpClient.put(`${this.urlApi}/enable`, books).pipe();
   }
 
   deleteBook(id: number): Observable<any>{

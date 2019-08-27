@@ -8,8 +8,9 @@
 </head>
 
 <input type="text" pInputText [(ngModel)]="search" placeholder="Search" />
-<button pButton type="submit" (click)="sendRequestSearch()" icon="pi pi-search"></button>
-<div *ngFor="let book of books">
+<button pButton type="submit" (click)="sendRequestSearch()" icon="pi pi-search" [disabled]="!search"></button>
+<p-paginator [rows]="selectedItemsPerPage" [totalRecords]="sizeArray" [rowsPerPageOptions]="[5,10,20]" (onPageChange)="paginate($event)"></p-paginator>
+<div *ngFor="let book of bookShows">
     <div class="card bg-light text-dark" style="margin-left: 50px; margin-right: 50px; margin-top: 20px">
         <div class="card-body">
             <a routerLink="../bookDetail/{{book.id}}">
@@ -20,5 +21,3 @@
         </div>
     </div>
 </div>
-
-<p-paginator [rows]="10" [totalRecords]="120" [rowsPerPageOptions]="[5,10,20]"></p-paginator>
