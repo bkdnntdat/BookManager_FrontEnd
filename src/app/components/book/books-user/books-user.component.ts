@@ -47,7 +47,7 @@ export class BooksUserComponent implements OnInit {
     });
 
     this.getBooks();
-    this.sendRequestPage(0,5);
+    this.sendRequestPage(0);
   }
 
   getBooks():void{
@@ -63,8 +63,8 @@ export class BooksUserComponent implements OnInit {
     this.httpClient.get("http://localhost:8080/api/books/search",{params:param}).subscribe((books:any) => this.books = books);
   }
 
-  sendRequestPage(page: number, items:number){
-    let param = new HttpParams().append('page', page+"").append('items',items+"").append('sortBy',this.selectedSortBy);
+  sendRequestPage(page: number){
+    let param = new HttpParams().append('page', page+"").append('items',this.selectedItemsPerPage+"").append('sortBy',this.selectedSortBy);
     this.httpClient.get("http://localhost:8080/api/books/getPage",{params:param})
     .subscribe((resp:any) => {
       this.bookShows = resp;
@@ -77,7 +77,10 @@ export class BooksUserComponent implements OnInit {
     //event.rows = Number of rows to display in new page
     //event.page = Index of the new page
     //event.pageCount = Total number of pages
-    this.sendRequestPage(event.page, event.rows);
-    this.selectedItemsPerPage=event.rows;
+    if(event.rows){
+      this.selectedItemsPerPage=event.rows;
+      this.sendRequestPage(event.page);
+    }
+    else this.sendRequestPage(0);
   }
 }
