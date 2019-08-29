@@ -12,12 +12,13 @@
         <a routerLink="/my-books" class="block aaa">My Books</a>
         <div *ngIf="getUser() && getUser().role.name=='ROLE_ADMIN'">
             <a routerLink="/bookDisableList" class="block aaa">Book Disable List</a>
+            <a routerLink="/books-admin" class="block aaa">Admin Books</a>
         </div>
         <a routerLink="/createBook" class="block aaa">Create Book</a>
-        <button pButton type="button" label="Logout" class="ui-button-rounded ui-button-danger" (click)="logouta()"></button>
+        <button pButton type="button" label="Logout" class="ui-button-rounded ui-button-danger button" (click)="logouta()"></button>
     </div>
     <ng-template #logout>
-        <button pButton type="button" label="Login" class="ui-button-rounded ui-button-success" (click)="login()"></button>
+        <button pButton type="button" label="Login" class="ui-button-rounded ui-button-success button" (click)="login()"></button>
     </ng-template>
 </p-sidebar>
 

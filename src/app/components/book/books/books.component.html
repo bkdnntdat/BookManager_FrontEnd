@@ -1,15 +1,13 @@
 <input type="text" pInputText [(ngModel)]="search" placeholder="Search" />
 <button pButton type="submit" (click)="sendRequestSearch()" icon="pi pi-search"></button>
-<p-dropdown [options]="itemsPerPage" [(ngModel)]="selectedItemsPerPage" placeholder="{{selectedItemsPerPage}}"></p-dropdown>
-<p>Selected Item Per Page: {{selectedItemsPerPage ? selectedItemsPerPage : 'none'}}</p>
+<p-dropdown [options]="itemsPerPage" [(ngModel)]="selectedItemsPerPage" placeholder="{{selectedItemsPerPage}}" (onPageChange)="itemsPerPage1($event)"></p-dropdown>
 
-<p-table [columns]="cols" [value]="books" dataKey="title" [paginator]="true" [rows]="selectedItemsPerPage">
+<p-table [columns]="cols" [value]="bookShows" dataKey="title">
     <ng-template pTemplate="header" let-columns>
         <tr>
             <th style="width: 3em"></th>
-            <th *ngFor="let col of columns" [ngStyle]="{'display': col.display}" [pSortableColumn]="col.field">
-                {{col.header}}
-                <p-sortIcon [field]="col.field" ariaLabel="Activate to sort" ariaLabelDesc="Activate to sort in descending order" ariaLabelAsc="Activate to sort in ascending order"></p-sortIcon>
+            <th *ngFor="let col of columns" [ngStyle]="{'display': col.display}">
+                <a (click)="sortBy(col.header)">{{col.header}}</a>
             </th>
         </tr>
     </ng-template>
@@ -21,23 +19,29 @@
                 </a>
             </td>
             <td *ngFor="let col of columns" [ngStyle]="{'display': col.display}">
-                <div *ngIf="col.header=='Title'; else show">
-                    <a routerLink="../bookDetail/{{rowData.id}}">
-                                {{rowData[col.field]}}    
-                            </a>
+                <div *ngIf="col.header=='Enable'; else show">
+                    <span class="dashicons dashicons-align-center">
+                        <p-inputSwitch [(ngModel)]="rowData.enabled" (click)="save(rowData.id)"></p-inputSwitch>
+                    </span>
                 </div>
                 <ng-template #show>
-                    <div *ngIf="rowData[col.field]==null || rowData[col.field]==0 ; else showField">
-                        <p style="text-align:center">-</p>
+                    <div *ngIf="col.header=='Title'; else showEditDelete">
+                        <a routerLink="../bookDetail/{{rowData.id}}">
+                            {{rowData[col.field]}}    
+                        </a>
                     </div>
-                    <ng-template #showField>
-                        <div *ngIf="col.header!=='Created At' && col.header!=='Updated At'; else showTime">
-                            <p style="text-align:center">{{rowData[col.field]}}</p>
+                    <ng-template #showEditDelete>
+                        <div *ngIf="col.header=='Edit/Delete'; else show1">
+                            <button pButton type="button" label="Edit" class="ui-button-warning button" (click)="editBook(rowData.id)"></button>
+                            <button pButton type="button" label="Delete" class="ui-button-danger button" (click)="deteleBook(rowData.id)"></button>
                         </div>
-                        <ng-template #showTime>
-                            <p style="text-align:center">
-                                <span>{{rowData[col.field] | timeAgo}}</span>
-                            </p>
+                    </ng-template>
+                    <ng-template #show1>
+                        <div *ngIf="rowData[col.field]==null || rowData[col.field]==0 ; else showField">
+                            <p style="text-align:center">-</p>
+                        </div>
+                        <ng-template #showField>
+                            <p style="text-align:center">{{rowData[col.field]}}</p>
                         </ng-template>
                     </ng-template>
                 </ng-template>
@@ -52,3 +56,5 @@
         </tr>
     </ng-template>
 </p-table>
+<p-paginator [rows]="selectedItemsPerPage" [totalRecords]="this.books.length" [rowsPerPageOptions]="[5,10,20]" (onPageChange)="paginate($event)">
+</p-paginator>

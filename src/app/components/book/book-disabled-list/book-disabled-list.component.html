@@ -17,7 +17,7 @@
             <td *ngFor="let col of columns" [ngStyle]="{'display': col.display}">
                 <div *ngIf="col.header=='Enable'; else show">
                     <span class="dashicons dashicons-align-center">
-                        <p-inputSwitch [(ngModel)]="rowData[col.field]" (click)="save()"></p-inputSwitch>
+                        <p-inputSwitch [(ngModel)]="rowData[col.field]" (click)="save(rowData.id)"></p-inputSwitch>
                     </span>
                 </div>
                 <ng-template #show>

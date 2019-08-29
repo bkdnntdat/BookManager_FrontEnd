@@ -37,8 +37,15 @@ export class BookService {
     return this.httpClient.put(this.urlApi, book).pipe();
   }
 
-  updateBooks(books: Book[]): Observable<any>{
-    return this.httpClient.put(`${this.urlApi}/enable`, books).pipe();
+  updateBookEnable(id:number): Observable<any>{
+    return this.httpClient.put(`${this.urlApi}/enable`, id).pipe();
+  }
+
+  updateBookDisable(id: number):Observable<any>{
+    const body = {
+      id : id
+    }
+    return this.httpClient.put(`${this.urlApi}/disable`,id).pipe();
   }
 
   deleteBook(id: number): Observable<any>{

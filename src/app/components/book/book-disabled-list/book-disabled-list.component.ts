@@ -40,8 +40,8 @@ export class BookDisabledListComponent implements OnInit {
     this.bookService.getDisableBooks().subscribe(books => this.books = books);
   }
 
-  save():void{
-    this.bookService.updateBooks(this.books).subscribe(resp =>{this.getBooks()});
+  save(id: number):void{
+    this.bookService.updateBookEnable(id).subscribe(book =>{this.books = book});
   }
 
   deteleBook(id: number): void{
