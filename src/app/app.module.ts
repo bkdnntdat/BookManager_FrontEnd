@@ -31,6 +31,7 @@ import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import { BooksUserComponent } from './components/book/books-user/books-user.component';
 import {PaginatorModule} from 'primeng/paginator';
+import {SplitButtonModule} from 'primeng/splitbutton';
 
 
 @NgModule({
@@ -67,7 +68,8 @@ import {PaginatorModule} from 'primeng/paginator';
     DropdownModule,
     MessagesModule,
     MessageModule,
-    PaginatorModule
+    PaginatorModule,
+    SplitButtonModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

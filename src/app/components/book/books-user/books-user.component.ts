@@ -26,12 +26,15 @@ export class BooksUserComponent implements OnInit {
   selectedSortBy:string;
 
   sizeArray:number;
+
+  page:number;
   
   constructor(
     private bookService: BookService,
     private location: Location,
     private userService: UserService,
     private httpClient: HttpClient ) {
+      this.page = 0;
       this.search="";
       this.sortBy=[
         {label:'Author',value:'author'},
@@ -48,7 +51,7 @@ export class BooksUserComponent implements OnInit {
     });
 
     this.getBooks();
-    this.sendRequestPage(0);
+    this.sendRequestPage();
   }
 
   getBooks():void{
@@ -64,8 +67,8 @@ export class BooksUserComponent implements OnInit {
     this.httpClient.get("https://bookmanagerment.herokuapp.com/api/books/search",{params:param}).subscribe((books:any) => this.books = books);
   }
 
-  sendRequestPage(page: number){
-    let param = new HttpParams().append('page', page+"").append('items',this.selectedItemsPerPage+"").append('sortBy',this.selectedSortBy).append('key', this.search);
+  sendRequestPage(){
+    let param = new HttpParams().append('page', this.page+"").append('items',this.selectedItemsPerPage+"").append('sortBy',this.selectedSortBy).append('key', this.search);
     this.httpClient.get("https://bookmanagerment.herokuapp.com/api/books/getPage",{params:param})
     .subscribe((resp:any) => {
       this.bookShows = resp;
@@ -81,8 +84,12 @@ export class BooksUserComponent implements OnInit {
     //event.pageCount = Total number of pages
     if(event.rows){
       this.selectedItemsPerPage=event.rows;
-      this.sendRequestPage(event.page);
+      this.sendRequestPage();
     }
-    else this.sendRequestPage(0);
+    else if(event.page){
+      this.page = event.page;
+      this.sendRequestPage();
+    }
+    else this.sendRequestPage();
   }
 }

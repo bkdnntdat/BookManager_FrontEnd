@@ -16,8 +16,11 @@
         </div>
         <div *ngFor="let comment of comments" class="margin">
             <p-fieldset legend="{{comment.user.email}}">
+                <div *ngIf="user.id==comment.user.id" style="float: right; display: inline;">
+                    <button pButton type="button" style="font-size: 0.75em;" class="ui-button-secondary" icon="pi pi-ellipsis-v"></button>
+                </div>
                 <p>{{comment.message}}</p>
-                <p class="float">{{comment.time | timeAgo}}</p>
+                <p class="float" style="display: block">{{comment.time | timeAgo}}</p>
             </p-fieldset>
         </div>
     </div>
