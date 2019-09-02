@@ -37,6 +37,7 @@ export class BooksComponent implements OnInit {
     private userService: UserService,
     private httpClient: HttpClient,
     private router : Router) {
+      this.search="";
       this.page=0;
       this.books = [];
       this.itemsPerPage=[
@@ -60,7 +61,6 @@ export class BooksComponent implements OnInit {
     }
 
   ngOnInit() {
-
     this.userService.getUser().subscribe((user:any) => {});
     this.getBooks();
     this.sendRequestPage();
@@ -72,7 +72,7 @@ export class BooksComponent implements OnInit {
 
   sendRequestSearch():void{
     let param = new HttpParams().append('key', this.search+"");
-    this.httpClient.get("http://localhost:8080/api/books/search",{params:param}).subscribe((books:any) => this.books = books);
+    this.httpClient.get("https://bookmanagerment.herokuapp.com/api/books/search",{params:param}).subscribe((books:any) => this.books = books);
   }
 
   save(id : number):void{
@@ -83,10 +83,11 @@ export class BooksComponent implements OnInit {
   }
 
   sendRequestPage(){
-    let param = new HttpParams().append('page', this.page+"").append('items',this.selectedItemsPerPage+"").append('sortBy',this.selectedSortBy);
-    this.httpClient.get("http://localhost:8080/api/books/getPage",{params:param}).subscribe((resp:any) => {
+    let param = new HttpParams().append('page', this.page+"").append('items',this.selectedItemsPerPage+"").append('sortBy',this.selectedSortBy).append('key', this.search);
+    this.httpClient.get("https://bookmanagerment.herokuapp.com/api/books/getPage",{params:param}).subscribe((resp:any) => {
       this.bookShows = resp;
       this.getBooks();
+      this.search = "";
     });
   }
 

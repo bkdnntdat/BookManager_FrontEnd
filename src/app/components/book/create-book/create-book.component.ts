@@ -31,10 +31,11 @@ export class BookComponent implements OnInit {
       title: this.title,
       description: this.description,
       author: this.author,
-      year: this.year
+      year: this.year,
+      enabled: false
     }
 
-    this.httpClient.post("http://localhost:8080/api/books", body).subscribe(resp => {this.goBack();},
+    this.httpClient.post("https://bookmanagerment.herokuapp.com/api/books", body).subscribe(resp => {this.goBack();},
     error => {alert("Title, description, author, year is required")}
     );
   }

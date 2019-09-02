@@ -37,7 +37,7 @@ export class RegisterComponent implements OnInit {
       password: this.password,
     }
 
-    this.httpClient.post('http://localhost:8080/api/users',body).subscribe((response:any) => {
+    this.httpClient.post('https://bookmanagerment.herokuapp.com/api/users',body).subscribe((response:any) => {
       console.log(response);
       this.tokenService.saveToken(response.token);
       this.userService.saveUserStatic();

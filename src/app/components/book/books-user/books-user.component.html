@@ -8,7 +8,7 @@
 </head>
 
 <input type="text" pInputText [(ngModel)]="search" placeholder="Search" />
-<button pButton type="submit" (click)="sendRequestSearch()" icon="pi pi-search" [disabled]="!search"></button>
+<button pButton type="submit" (click)="sendRequestPage()" icon="pi pi-search" [disabled]="!search"></button>
 <p-paginator [rows]="selectedItemsPerPage" [totalRecords]="sizeArray" [rowsPerPageOptions]="[5,10,20]" (onPageChange)="paginate($event)">
 </p-paginator>
 <p-dropdown [options]="sortBy" [(ngModel)]="selectedSortBy" (onChange)="paginate($event)"></p-dropdown>
@@ -19,8 +19,8 @@
             <a routerLink="../bookDetail/{{book.id}}">
                 {{book.title}}
             </a>
-            <div innerHtml="{{book.description | slice:0:300}}...">
-            </div>
+            <div innerHtml="{{book.description | slice:0:300}}..."></div>
+            <div style="display: block; float: right;">{{book.createdAt | timeAgo}}</div>
         </div>
     </div>
 </div>

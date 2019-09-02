@@ -1,5 +1,5 @@
 <input type="text" pInputText [(ngModel)]="search" placeholder="Search" />
-<button pButton type="submit" (click)="sendRequestSearch()" icon="pi pi-search"></button>
+<button pButton type="submit" (click)="sendRequestPage()" icon="pi pi-search"></button>
 <p-dropdown [options]="itemsPerPage" [(ngModel)]="selectedItemsPerPage" placeholder="{{selectedItemsPerPage}}" (onPageChange)="itemsPerPage1($event)"></p-dropdown>
 
 <p-table [columns]="cols" [value]="bookShows" dataKey="title">

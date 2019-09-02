@@ -7,7 +7,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 })
 export class CommentService {
 
-  private urlApi="http://localhost:8080/api/books/comments"
+  private urlApi="https://bookmanagerment.herokuapp.com/api/books/comments"
 
   constructor(private httpClient: HttpClient) { }
 

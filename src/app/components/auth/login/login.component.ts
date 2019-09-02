@@ -43,7 +43,7 @@ export class LoginComponent implements OnInit {
       password: this.password,
     }
 
-    this.httpClient.post('http://localhost:8080/api/auth', body)
+    this.httpClient.post('https://bookmanagerment.herokuapp.com/api/auth', body)
       .subscribe((response: any) => {
         console.log(response);
         if(response.token!=null){
@@ -54,7 +54,7 @@ export class LoginComponent implements OnInit {
         }
       },
       error => {alert("Email or password is incorrect")})
-    // this.httpClient.get('http://localhost:8080/user/token').subscribe((resp:any) =>{
+    // this.httpClient.get('https://bookmanagerment.herokuapp.com/user/token').subscribe((resp:any) =>{
     //   if(resp.code == null){
     //     this.router.navigate(['books']);
     //   }
@@ -70,7 +70,7 @@ export class LoginComponent implements OnInit {
 
   // getUser(): void{
   //   if(this.tokenService.getToken()==null) return;
-  //   this.httpClient.get('http://localhost:8080/user').subscribe((resp:any) =>{
+  //   this.httpClient.get('https://bookmanagerment.herokuapp.com/user').subscribe((resp:any) =>{
   //     if(resp.code == null){
   //       this.router.navigate(['books']);
   //     }

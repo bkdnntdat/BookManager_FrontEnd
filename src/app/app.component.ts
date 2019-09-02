@@ -27,7 +27,7 @@ export class AppComponent{
   }
 
   logouta():void{
-    this.httpClient.delete("http://localhost:8080/api/auth").subscribe(resp => {this.tokenService.clearToken();
+    this.httpClient.delete("https://bookmanagerment.herokuapp.com/api/auth").subscribe(resp => {this.tokenService.clearToken();
     this.userService.deleteUserStatic();
     this.router.navigate(['login']);});
   }

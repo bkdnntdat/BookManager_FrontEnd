@@ -12,7 +12,7 @@ export class BookService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
-  private urlApi = "http://localhost:8080/api/books";
+  private urlApi = "https://bookmanagerment.herokuapp.com/api/books";
 
   constructor(private httpClient:HttpClient) { }
 

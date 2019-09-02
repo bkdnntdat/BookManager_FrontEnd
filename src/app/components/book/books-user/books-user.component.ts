@@ -32,6 +32,7 @@ export class BooksUserComponent implements OnInit {
     private location: Location,
     private userService: UserService,
     private httpClient: HttpClient ) {
+      this.search="";
       this.sortBy=[
         {label:'Author',value:'author'},
         {label:'Title',value:'title'},
@@ -60,15 +61,16 @@ export class BooksUserComponent implements OnInit {
 
   sendRequestSearch():void{
     let param = new HttpParams().append('key', this.search+"");
-    this.httpClient.get("http://localhost:8080/api/books/search",{params:param}).subscribe((books:any) => this.books = books);
+    this.httpClient.get("https://bookmanagerment.herokuapp.com/api/books/search",{params:param}).subscribe((books:any) => this.books = books);
   }
 
   sendRequestPage(page: number){
-    let param = new HttpParams().append('page', page+"").append('items',this.selectedItemsPerPage+"").append('sortBy',this.selectedSortBy);
-    this.httpClient.get("http://localhost:8080/api/books/getPage",{params:param})
+    let param = new HttpParams().append('page', page+"").append('items',this.selectedItemsPerPage+"").append('sortBy',this.selectedSortBy).append('key', this.search);
+    this.httpClient.get("https://bookmanagerment.herokuapp.com/api/books/getPage",{params:param})
     .subscribe((resp:any) => {
       this.bookShows = resp;
       this.getBooks();
+      this.search = "";
     });
   }
 

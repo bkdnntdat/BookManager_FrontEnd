@@ -51,7 +51,7 @@ export class BookDetailComponent implements OnInit {
       book: this.book
     }
 
-    this.httpClient.post('http://localhost:8080/api/books/comments', body).subscribe((comment:any)=> {
+    this.httpClient.post('https://bookmanagerment.herokuapp.com/api/books/comments', body).subscribe((comment:any)=> {
       this.comment = comment;
       this.commentService.getComment(this.book.id).subscribe((comment:any) => this.comments=comment)
       this.message = ""; 
