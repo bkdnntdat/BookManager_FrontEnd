@@ -33,8 +33,16 @@ export class UserService {
       return this.httpClient.get<User>(this.urlApi+"/user").pipe();
     }
 
+    getUserById(id: number): Observable<User>{
+      return this.httpClient.get<User>(this.urlApi+"/" + id).pipe();
+    }
+
     getUserStatic():User{
       return this.user;
+    }
+
+    getUserId():number{
+      return this.user.id;
     }
 
     saveUserStatic():void{

@@ -11,13 +11,14 @@ import { User } from './models/user';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent{
-  user: User;
+  id: number;
   constructor(
     private router: Router,
     private tokenService:TokenService,
     private httpClient:HttpClient,
     private userService: UserService){
-    };
+      // this.id=this.userService.getUserId();
+  };
 
   url = 'http://localhost:4200';
   token = this.tokenService.getToken();

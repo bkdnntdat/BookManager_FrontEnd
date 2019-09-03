@@ -32,6 +32,7 @@ import {MessageModule} from 'primeng/message';
 import { BooksUserComponent } from './components/book/books-user/books-user.component';
 import {PaginatorModule} from 'primeng/paginator';
 import {SplitButtonModule} from 'primeng/splitbutton';
+import { UserComponent } from './components/users/user/user.component';
 
 
 @NgModule({
@@ -48,7 +49,8 @@ import {SplitButtonModule} from 'primeng/splitbutton';
     TimeAgoPipe,
     BookDetailComponent,
     MyListBookComponent,
-    BooksUserComponent
+    BooksUserComponent,
+    UserComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,9 @@
 <p-sidebar [(visible)]="visibleSidebar1" [baseZIndex]="10000">
     <h1 style="font-weight:normal">Menu</h1>
     <a routerLink="/books" class="block aaa">Books</a>
+    <div *ngIf="getUser()">
+        <a routerLink="/profile/{{getUser().id}}" class="block aaa">My Profile</a>
+    </div>
     <!-- <div *ngIf="getUser()">
         <a routerLink="/my-books" class="block aaa">My Books</a>
         <div *ngIf="getUser().role.name=='ROLE_ADMIN'">

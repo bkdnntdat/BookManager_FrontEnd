@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from 'src/app/models/book';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { BookService } from 'src/app/services/book/book.service';
 import { Location } from '@angular/common';
@@ -23,6 +23,7 @@ export class BookDetailComponent implements OnInit {
   user: User;
   comment: Comment;
   token: string;
+  editId: number;
 
   constructor(
     private httpClient: HttpClient,
@@ -34,6 +35,7 @@ export class BookDetailComponent implements OnInit {
     private tokenService: TokenService) { }
 
   ngOnInit() {
+    this.editId=-1;
     this.token = this.tokenService.getToken();
     this.getBook();
     this.userService.getUser().subscribe(user => this.user = user);
@@ -56,6 +58,30 @@ export class BookDetailComponent implements OnInit {
       this.commentService.getComment(this.book.id).subscribe((comment:any) => this.comments=comment)
       this.message = ""; 
     });
+  }
+
+  delete(id: number){
+    let param = new HttpParams().set('id',id+"");
+    this.httpClient.delete('https://bookmanagerment.herokuapp.com/api/books/comments',{params:param}).subscribe(resp => {
+      this.getBook();
+    });
+  }
+
+  setEditId(id: number){
+    this.editId=id;
+  }
+
+  saveEdit(comment: Comment){
+    const body={
+      id : comment.id,
+      message: comment.message,
+      book: comment.book
+    }
+    this.httpClient.put('https://bookmanagerment.herokuapp.com/api/books/comments', body).subscribe((comments:any)=>
+    {
+      this.comments=comments;
+      this.editId=-1;
+    })
   }
 }
 

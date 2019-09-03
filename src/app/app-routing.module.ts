@@ -11,6 +11,7 @@ import { BookDisabledListComponent } from './components/book/book-disabled-list/
 import { BookDetailComponent } from './components/book/book-detail/book-detail.component';
 import { MyListBookComponent } from './components/book/my-list-book/my-list-book.component';
 import { BooksUserComponent } from './components/book/books-user/books-user.component';
+import { UserComponent } from './components/users/user/user.component';
 
 
 const routes: Routes = [
@@ -66,6 +67,10 @@ const routes: Routes = [
   {
     path: 'books',
     component: BooksUserComponent
+  },
+  {
+    path: 'profile/:id',
+    component: UserComponent
   }
 ];
 

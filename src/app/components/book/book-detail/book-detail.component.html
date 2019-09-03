@@ -16,11 +16,21 @@
         </div>
         <div *ngFor="let comment of comments" class="margin">
             <p-fieldset legend="{{comment.user.email}}">
-                <div *ngIf="user.id==comment.user.id" style="float: right; display: inline;">
-                    <button pButton type="button" style="font-size: 0.75em;" class="ui-button-secondary" icon="pi pi-ellipsis-v"></button>
+                <div *ngIf="comment.id == editId; else showComment">
+                    <textarea pInputTextarea [(ngModel)]="comment.message" placeholder="Comment" style="width: 100em; height: 50px; float: left;"></textarea>
+                    <button pButton type="button" label="Save" class="ui-button-rounded ui-button-success" (click)="saveEdit(comment)"></button>
                 </div>
-                <p>{{comment.message}}</p>
-                <p class="float" style="display: block">{{comment.time | timeAgo}}</p>
+
+                <ng-template #showComment>
+                    <div *ngIf="user.id==comment.user.id || user.role.name=='ROLE_ADMIN' ; else showEdit">
+                        <div style="float: right; display: block;">
+                            <button pButton type="button" label="Edit" class="ui-button-rounded ui-button-warning" (click)="setEditId(comment.id)"></button>
+                            <button pButton type="button" label="Delete" class="ui-button-rounded ui-button-danger" (click)="delete(comment.id)"></button>
+                        </div>
+                    </div>
+                    <p>{{comment.message}}</p>
+                    <p class="float" style="display: block">{{comment.time | timeAgo}}</p>
+                </ng-template>
             </p-fieldset>
         </div>
     </div>
