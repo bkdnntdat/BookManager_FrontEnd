@@ -9,31 +9,29 @@
 </head>
 <div class="form sign-up">
     <h2>Time to feel like home,</h2>
-    <label class="col-lg-6">
-    <span>First Name</span>
-    <input type="text" class="form-control" [(ngModel)]="first_name"/>
-    <div *ngIf="!first_name">
-        <p-message severity="error" text="First Name is required"></p-message>
-    </div>
-</label>
-    <label class="col-lg-6">
+    <label class="block">
+        <span>First Name</span>
+        <input type="text" class="form-control block" [(ngModel)]="first_name" />
+        <div *ngIf="!first_name" style="display: inline; float: right;">
+            <p-message severity="error" text="First Name is required"></p-message>
+        </div>
+    </label>
     <span>Last Name</span>
-    <input type="text" class="form-control" [(ngModel)]="last_name"/>
-    <div *ngIf="!last_name">
+    <input type="text" class="form-control block" [(ngModel)]="last_name" />
+    <div *ngIf="!last_name" style="display: inline; float: right; height: 30px;">
         <p-message severity="error" text="Last Name is required"></p-message>
     </div>
-</label>
     <label class="block">
     <span>Email</span>
     <input type="email" class="form-control block" [(ngModel)]="email"/>
-    <div *ngIf="!email">
+    <div *ngIf="!email" style="display: inline; float: right;">
         <p-message severity="error" text="Email is required"></p-message>
     </div>
 </label>
     <label class="block">
     <span>Password</span>
     <input type="password" class="form-control block" [(ngModel)]="password"/>
-    <div *ngIf="!password">
+    <div *ngIf="!password" style="display: inline; float: right;">
         <p-message severity="error" text="Password is required"></p-message>
     </div>
 </label>

@@ -9,4 +9,5 @@ export class User{
     code: string;
     token:string;
     role: Role;
+    enabled: boolean;
 }

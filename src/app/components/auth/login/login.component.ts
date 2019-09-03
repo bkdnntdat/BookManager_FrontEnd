@@ -46,11 +46,14 @@ export class LoginComponent implements OnInit {
     this.httpClient.post('https://bookmanagerment.herokuapp.com/api/auth', body)
       .subscribe((response: any) => {
         console.log(response);
-        if(response.token!=null){
+        if(response!=null){
           this.token = response.token;
           this.tokenService.saveToken(this.token);
           this.router.navigate(['books']);
           this.userService.saveUserStatic();
+        }
+        else{
+          alert("User was disabled!");
         }
       },
       error => {alert("Email or password is incorrect")})
