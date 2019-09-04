@@ -12,6 +12,7 @@ import { BookDetailComponent } from './components/book/book-detail/book-detail.c
 import { MyListBookComponent } from './components/book/my-list-book/my-list-book.component';
 import { BooksUserComponent } from './components/book/books-user/books-user.component';
 import { UserComponent } from './components/users/user/user.component';
+import { UserManagerComponent } from './components/users/user-manager/user-manager.component';
 
 
 const routes: Routes = [
@@ -71,6 +72,10 @@ const routes: Routes = [
   {
     path: 'profile/:id',
     component: UserComponent
+  },
+  {
+    path: 'user-manager',
+    component: UserManagerComponent
   }
 ];
 

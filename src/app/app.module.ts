@@ -33,6 +33,7 @@ import { BooksUserComponent } from './components/book/books-user/books-user.comp
 import {PaginatorModule} from 'primeng/paginator';
 import {SplitButtonModule} from 'primeng/splitbutton';
 import { UserComponent } from './components/users/user/user.component';
+import { UserManagerComponent } from './components/users/user-manager/user-manager.component';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { UserComponent } from './components/users/user/user.component';
     BookDetailComponent,
     MyListBookComponent,
     BooksUserComponent,
-    UserComponent
+    UserComponent,
+    UserManagerComponent
   ],
   imports: [
     BrowserModule,

@@ -23,10 +23,16 @@ export class UserService {
     private httpClient:HttpClient,
     private tokenService: TokenService,
     private router: Router
-    ) {}
+    ) {
+      this.saveUserStatic();
+    }
 
     getToken():Observable<string>{
-      return this.httpClient.get<string>(`${this.url}/login`).pipe()
+      return this.httpClient.get<string>(`${this.url}/login`).pipe();
+    }
+
+    getUsers(): Observable<User[]>{
+      return this.httpClient.get<User[]>(this.urlApi).pipe();
     }
 
     getUser(): Observable<User>{
