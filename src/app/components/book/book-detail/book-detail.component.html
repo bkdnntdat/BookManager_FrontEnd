@@ -1,8 +1,11 @@
 <div *ngIf="book">
     <h1>{{book.title}}</h1>
     <div class="back-ground">
+        <div *ngIf="user && book.user.email==user.email || user.role.name=='ROLE_ADMIN'" style="float: right; display: block;">
+            <button pButton type="button" label="Edit" class="ui-button-rounded ui-button-warning" (click)="editBook(book.id)"></button>
+            <button pButton type="button" label="Delete" class="ui-button-rounded ui-button-danger" (click)="deleteBook(book.id)"></button>
+        </div>
         <span class="color">{{book.createdAt | timeAgo}}</span>
-        <span *ngIf="book.updatedAt" class="color">, updated at: {{book.updatedAt | timeAgo}}</span>
         <span class="block color">Author: {{book.author}}</span>
         <span class="block color">by user: {{book.user.email}}</span>
         <div innerHtml="{{book.description}}"></div>
@@ -12,13 +15,13 @@
         <h2>Comment</h2>
         <div *ngIf="token">
             <textarea pInputTextarea [(ngModel)]="message" placeholder="Comment" style="width: 100em; height: 50px;"></textarea>
-            <button pButton type="button" label="Comment" class="ui-button-rounded" (click)="postComment()" style="display: inline"></button>
+            <button pButton type="button" label="Comment" class="ui-button-rounded" (click)="postComment()" style="display: inline" [disabled]="!message"></button>
         </div>
         <div *ngFor="let comment of comments" class="margin">
             <p-fieldset legend="{{comment.user.email}}">
                 <div *ngIf="comment.id == editId; else showComment">
                     <textarea pInputTextarea [(ngModel)]="comment.message" placeholder="Comment" style="width: 100em; height: 50px; float: left;"></textarea>
-                    <button pButton type="button" label="Save" class="ui-button-rounded ui-button-success" (click)="saveEdit(comment)"></button>
+                    <button pButton type="button" label="Save" class="ui-button-rounded ui-button-success" (click)="saveEdit(comment)" [disabled]="!comment.message"></button>
                 </div>
 
                 <ng-template #showComment>

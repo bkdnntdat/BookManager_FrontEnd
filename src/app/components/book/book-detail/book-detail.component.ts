@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Book } from 'src/app/models/book';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from 'src/app/services/book/book.service';
 import { Location } from '@angular/common';
 import { Comment } from 'src/app/models/comment';
@@ -32,9 +32,11 @@ export class BookDetailComponent implements OnInit {
     private location: Location,
     private commentService: CommentService,
     private userService: UserService,
-    private tokenService: TokenService) { }
+    private tokenService: TokenService,
+    private router: Router) { }
 
   ngOnInit() {
+    this.user = this.userService.getUserStatic();
     this.editId=-1;
     this.token = this.tokenService.getToken();
     this.getBook();
@@ -82,6 +84,16 @@ export class BookDetailComponent implements OnInit {
       this.comments=comments;
       this.editId=-1;
     })
+  }
+
+  deteleBook(id: number): void{
+    this.bookService.deleteBook(id).subscribe(resp => {
+      this.location.back();
+    });
+  }
+
+  editBook(id: number): void{
+    this.router.navigate(['/editBook/'+id]);
   }
 }
 
